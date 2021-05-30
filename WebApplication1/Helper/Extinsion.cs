@@ -90,7 +90,19 @@ namespace WebApplication1.Helper
         };
     }
 
-    public static AuthorBookResource ToResourceNEw(this Book entitiy)
+
+        public static AuthorBookCreateResource ToResourceNEw(this Author entitiy)
+        {
+            return new AuthorBookCreateResource()
+            {
+                Id = entitiy.Id,
+                FullName = entitiy.FullName,
+                Email = entitiy.Email,
+                Age = entitiy.Age,
+            };
+        }
+
+        public static AuthorBookResource ToResourceNEw(this Book entitiy)
         {
             return new AuthorBookResource()
             {

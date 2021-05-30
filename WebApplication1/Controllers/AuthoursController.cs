@@ -60,7 +60,7 @@ namespace WebApplication1.Controllers
 
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
-            return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResource());
+            return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResourceNEw());
         }
 
         //[HttpPut("{Id}")]
