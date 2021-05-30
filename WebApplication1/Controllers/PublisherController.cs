@@ -49,6 +49,9 @@ namespace WebApplication1.Controllers
             var newPublisherEntity = new Publisher()
             {
                 Name = newPublisherModel.Name,
+                Email= newPublisherModel.Email,
+                DateOfBirth = newPublisherModel.DateOfBirth,
+                Salery= newPublisherModel.Salery
             };
 
             var newPublisher = await _repository.CreatePublisher(newPublisherEntity);

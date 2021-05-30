@@ -17,10 +17,13 @@ namespace WebApplication1.Controllers
     public class AuthoursController : ControllerBase
     {
         private readonly IAuthorRepositories _reposotiry;
+        private readonly IBookRepository _bookRepository;
 
-        public AuthoursController(IAuthorRepositories reposotiry)
+        public AuthoursController(IAuthorRepositories reposotiry, IBookRepository bookRepository)
         {
             _reposotiry = reposotiry;
+            _bookRepository = bookRepository;
+
         }
 
         [HttpGet]
@@ -47,11 +50,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthorResource>> CreateAuthor([FromBody] AuthorModel Entitiy)
         {
+
             var AuthEntitiy = new Author()
             {
                 FullName = Entitiy.FullName,
                 Email= Entitiy.Email,
                 Age= Entitiy.Age,
+               
+
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
             return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResource());

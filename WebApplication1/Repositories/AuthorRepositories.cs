@@ -48,8 +48,11 @@ namespace WebApplication1.Repositories
             return await _bookContext.Authors.Include(x => x.Books).FirstOrDefaultAsync(X => X.Id == Id);
         }
 
-        public async Task<IEnumerable<Author>> GetAuthors()
+        public async Task<ICollection<Author>> GetAuthors(Func<Author, bool> predicate)
         {
+            if (predicate != null) {
+                return _bookContext.Authors.Include(x => x.Books).Where(predicate).ToList();
+            }
             return await _bookContext.Authors.Include(x => x.Books).ToListAsync();
         }
 

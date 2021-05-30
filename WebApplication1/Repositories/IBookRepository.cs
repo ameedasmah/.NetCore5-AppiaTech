@@ -13,6 +13,5 @@ namespace WebApplication1.Repositories
         Task<Book> Create(Book book);
         Task <Book> Update(Book book);
         Task Delete(int id);
-
     }
 }

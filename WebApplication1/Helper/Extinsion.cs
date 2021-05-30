@@ -46,6 +46,8 @@ namespace WebApplication1.Helper
         public static BookPublisherResource ToResourceNew(this Book entitiy)
         {
             return new BookPublisherResource()
+       
+
             {
                 Id = entitiy.Id,
                 Title = entitiy.Title,
@@ -65,6 +67,7 @@ namespace WebApplication1.Helper
                 FullName = entitiy.FullName
             };
         }
+
 
         public static PublisherBookResourse ToResourceNew(this Publisher entities)
         {
@@ -99,5 +102,3 @@ namespace WebApplication1.Helper
 
     }
 }
-
-

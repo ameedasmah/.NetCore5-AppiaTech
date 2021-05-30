@@ -56,8 +56,7 @@ namespace WebApplication1.Controllers
                     return BadRequest(ModelState);
                 }
 
-
-            var author = _authorRepositories.GetAuthors().Result.ToList().Where(item => bookModel.AuthorIds.Contains(item.Id)).ToList();
+            var author = _authorRepositories.GetAuthors(item => bookModel.AuthorIds.Contains(item.Id)).Result.ToList();
                 var newBook = new Book()
                 {
                     Title = bookModel.Title,
@@ -80,14 +79,13 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
        
-            var author = _authorRepositories.GetAuthors().Result.ToList().Where(item => book.AuthorIds.Contains(item.Id)).ToList();
+            var authors = await _authorRepositories.GetAuthors(item => book.AuthorIds.Contains(item.Id));
             var newBook = new Book()
             {
                 PublisherId = bookToUpdate.PublisherId,
                 Title = bookToUpdate.Title,
                 Discraptions = bookToUpdate.Discraptions,
-                Authors = author
-
+                Authors = authors
             };
             var BookEntities = await _bookRepository.Update(newBook);
             var bookResources = BookEntities.ToResourceNew();
