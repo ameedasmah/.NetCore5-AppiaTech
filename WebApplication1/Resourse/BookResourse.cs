@@ -11,10 +11,10 @@ namespace WebApplication1.Data
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        //public String Author { get; set; }
         public string discraptions { get; set; }
         public int PublisherId { get; set; }
         public Publisher publisher { get; set; }
+        public List<BookAuthorResource> AuthoursNameList { get; set; }
 
     }
 }

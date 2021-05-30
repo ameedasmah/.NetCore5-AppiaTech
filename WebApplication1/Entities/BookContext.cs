@@ -18,8 +18,8 @@ namespace WebApplication1.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Author>().ToTable("Author");
-            modelBuilder.Entity<Book_Author>().HasOne(b => b.Book).WithMany(ba => ba.book_Authors).HasForeignKey(bi => bi.BookId);
-            modelBuilder.Entity<Book_Author>().HasOne(b => b.Author).WithMany(bb => bb.book_Authors).HasForeignKey(bi => bi.AuthorId);
+            //modelBuilder.Entity<Book_Author>().HasOne(b => b.Book).WithMany(ba => ba.book_Authors).HasForeignKey(bi => bi.BookId);
+            //modelBuilder.Entity<Book_Author>().HasOne(b => b.Author).WithMany(bb => bb.book_Authors).HasForeignKey(bi => bi.AuthorId);
 
         }
         public DbSet <Book> Books{ get; set; }

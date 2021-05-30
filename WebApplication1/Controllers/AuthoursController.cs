@@ -50,23 +50,27 @@ namespace WebApplication1.Controllers
             var AuthEntitiy = new Author()
             {
                 FullName = Entitiy.FullName,
+                Email= Entitiy.Email,
+                Age= Entitiy.Age,
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
             return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResource());
         }
 
-        [HttpPut("{Id}")]
+        //[HttpPut("{Id}")]
 
-        public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
-        {
-            var authorEntities = new Author()
-            {
-                FullName = authorModel.FullName,
-            };
-            var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
+        //public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
+        //{
+        //    var authorEntities = new Author()
+        //    {
+        //        FullName = authorModel.FullName,
+        //        Email = Entitiy.Email,
+        //        Age = Entitiy.Age,
+        //    };
+        //    var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)

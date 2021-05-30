@@ -23,12 +23,12 @@ namespace WebApplication1.Repositories
 
             await _Context.SaveChangesAsync();
 
-            return await _Context.Books.Include(X => X.Publisher).FirstOrDefaultAsync(X => X.Id == book.Id);
+            return await _Context.Books.Include(X => X.Publisher).Include(x=>x.Authors).FirstOrDefaultAsync(X => X.Id == book.Id);
         }
 
         public async Task Delete(int Id)
         {
-            var bookToDelete = await _Context.Books.Include(x => x.book_Authors).FirstOrDefaultAsync(X => X.Id == Id);
+            var bookToDelete = await _Context.Books.Include(x => x.Authors).FirstOrDefaultAsync(X => X.Id == Id);
             _Context.Remove(bookToDelete);
 
             await _Context.SaveChangesAsync();
@@ -40,7 +40,7 @@ namespace WebApplication1.Repositories
             try
             {
 
-            return await _Context.Books.Include(x=>x.book_Authors).Include(X => X.Publisher).ToListAsync();
+            return await _Context.Books.Include(x=>x.Authors).Include(X => X.Publisher).ToListAsync();
             }
             catch(Exception exiption)
             {
@@ -53,7 +53,7 @@ namespace WebApplication1.Repositories
             try
             {
 
-            return await _Context.Books.Include(X => X.Publisher).FirstOrDefaultAsync(X => X.Id == Id);
+            return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == Id);
             }
             catch(Exception exiption)
             {
@@ -72,7 +72,7 @@ namespace WebApplication1.Repositories
 
             _Context.Entry(book).State = EntityState.Modified;
                 await _Context.SaveChangesAsync();
-            return await _Context.Books.Include(X => X.Publisher).FirstOrDefaultAsync(X => X.Id == book.Id); 
+            return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == book.Id); 
             }
             catch(Exception ex)
             {

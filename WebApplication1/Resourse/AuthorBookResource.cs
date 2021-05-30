@@ -6,12 +6,10 @@ using WebApplication1.Data;
 
 namespace WebApplication1.Resourse
 {
-    public class AuthorResource
+    public class AuthorBookResource
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public int Age { get; set; }
-        public List<AuthorBookResource> Books {get;set;}
+        public string Title { get; set; }
+        public string Discraptions { get; set; }
     }
 }

@@ -84,3 +84,6 @@ C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebAppli
 C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.pdb
 C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
 C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.csprojAssemblyReference.cache
+C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\bin\Debug\net5.0\xunit.abstractions.dll
+C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\bin\Debug\net5.0\xunit.core.dll
+C:\Users\Ameed\Desktop\newWork webApi with ASP.NET Core\WebApplication1\WebApplication1\bin\Debug\net5.0\xunit.execution.dotnet.dll
