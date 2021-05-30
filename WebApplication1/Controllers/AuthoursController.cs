@@ -63,20 +63,20 @@ namespace WebApplication1.Controllers
             return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResourceNEw());
         }
 
-        //[HttpPut("{Id}")]
+        [HttpPut("{Id}")]
 
-        //public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
-        //{
-        //    var authorEntities = new Author()
-        //    {
-        //        FullName = authorModel.FullName,
-        //        Email = Entitiy.Email,
-        //        Age = Entitiy.Age,
-        //    };
-        //    var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
+        public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
+        {
+            var authorEntities = new Author()
+            {
+                FullName = authorModel.FullName,
+                Email = authorModel.Email,
+                Age = authorModel.Age,
+            };
+            var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
@@ -85,9 +85,19 @@ namespace WebApplication1.Controllers
             if (bookToDelete == null)
 
                 return NotFound();
-
-            await _reposotiry.Delete(bookToDelete.Id);
+         
+           var wantedToDeleted =  await _reposotiry.GetAuthor(id);
+            if (wantedToDeleted.Books == null)
+            {
             return NoContent();
+            }
+            else
+            {
+                await _reposotiry.Delete(id);
+
+            }
+            return NoContent();
+
         }
 
 

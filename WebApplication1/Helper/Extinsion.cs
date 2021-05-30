@@ -22,9 +22,9 @@ namespace WebApplication1.Helper
             };
         }
 
-        public static BookLightResource ToLightResource(this Book entitiy)
+        public static PublisherBookCreate ToLightResource(this Book entitiy)
         {
-            return new BookLightResource()
+            return new PublisherBookCreate()
             {
                 Id = entitiy.Id,
                 Title = entitiy.Title,
