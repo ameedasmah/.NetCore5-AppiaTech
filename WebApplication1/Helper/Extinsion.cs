@@ -33,8 +33,6 @@ namespace WebApplication1.Helper
         }
 
 
-        
-
         public static PublisherResourse ToResource(this Publisher entities)
         {
             return new PublisherResourse()
@@ -45,43 +43,27 @@ namespace WebApplication1.Helper
             };
         }
 
-
-        public static Book_AuthorsResourse ToResource(this Book_Author entities)
+        public static BookPublisherResource ToResourceNew(this Book entitiy)
         {
-            return new Book_AuthorsResourse()
-            {
-                //Id = entities.Id,
-               BookId = entities.BookId,
-               AuthorId= entities.AuthorId
-            };
-        }
-
-
-
-        public static NewBookResourse ToResourceNew(this Book entitiy)
-        {
-            return new NewBookResourse()
+            return new BookPublisherResource()
             {
                 Id = entitiy.Id,
-                PublisherId = entitiy.PublisherId,
-                discraptions = entitiy.Discraptions,
                 Title = entitiy.Title,
+                Discraptions = entitiy.Discraptions,
+                PublisherId = entitiy.PublisherId,
                 Newpublisher = entitiy.Publisher.ToResourceNew(),
-                book_Authors = entitiy.book_Authors?.Select(x => new Book_AuthorsResourse { AuthorId = x.AuthorId, BookId = x.BookId }).ToList(),
+                BookAuthorResources = entitiy.Authors.Select(x => x.ToResourceNew()).ToList()
+
             };
         }
 
-
-
-
-        public static List<Book_AuthorsResourse> ToResource(this List<Book_Author> Entitiy)
+        public static BookAuthorResource ToResourceNew(this Author entitiy)
         {
-            var responseBookAuthor = new List<Book_AuthorsResourse>();
-            foreach(var item in Entitiy)
+            return new BookAuthorResource()
             {
-                responseBookAuthor.Add(item.ToResource());
-            }
-            return responseBookAuthor;
+                Id = entitiy.Id,
+                FullName = entitiy.FullName
+            };
         }
 
         public static PublisherBookResourse ToResourceNew(this Publisher entities)
@@ -93,46 +75,27 @@ namespace WebApplication1.Helper
             };
         }
 
-
-
         public static AuthorResource ToResource(this Author entitiy)
         {
             return new AuthorResource()
             {
+                Id = entitiy.Id,
                 FullName = entitiy.FullName,
-                Id = entitiy.Id
+                Email = entitiy.Email,
+                Age = entitiy.Age,
+                Books = entitiy.Books.Select(x => x.ToResourceNEw()).ToList()
+        };
+    }
+
+    public static AuthorBookResource ToResourceNEw(this Book entitiy)
+        {
+            return new AuthorBookResource()
+            {
+                Id = entitiy.Id,
+                Title = entitiy.Title,
+                Discraptions = entitiy.Discraptions
             };
-
         }
-        //public static newPublisherResource ToResourceTry(this Publisher Entitiy)
-        //{
-        //    return new newPublisherResource
-        //    {
-        //        Id = Entitiy.Id,
-        //        Name = Entitiy.Name,
-        //        Books = Entitiy.Books?.ToResourcseTry()
-        //    };
-        //}
-
-        //public static BookWithPublisherResourcse ToResourceTry(this Book Entitiy)
-        //{
-        //    return new BookWithPublisherResourcse
-        //    {
-        //        Id = Entitiy.Id,
-        //        Title = Entitiy.Title,
-        //        discraptions = Entitiy.Discraptions,
-        //    };
-        //}
-
-        //public static List<PublisherBookResourse> ToResourcseTry(this List<BookWithPublisherResourcse> publishers)
-        //{
-        //    var ResponsePublisherBook = new List<PublisherBookResourse>();
-        //    foreach(var item in Entities)
-        //    {
-        //        ResponsePublisherBook.Add(item.ToResourceTry());
-        //    }
-        //    return ResponsePublisherBook;
-        //}
 
     }
 }

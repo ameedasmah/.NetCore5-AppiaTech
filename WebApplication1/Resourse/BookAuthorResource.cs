@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Resourse
 {
-    public class Book_AuthorsResourse
+    public class BookAuthorResource
     {
-        public int AuthorId { get; set; }
-        public int BookId { get; set; }
+        public int Id { get; set; }
+        public string FullName { get; set; }
     }
 }

@@ -19,9 +19,20 @@ namespace WebApplication1.Repositories
 
         public async Task<Author> CreateAuthor(Author author)
         {
-             _bookContext.Authors.Add(author);
-            await _bookContext.SaveChangesAsync();
-            return author;
+            if (author == null)
+            {
+                throw new ArgumentNullException($"{nameof(CreateAuthor)} entity musn't to be null ");
+            }
+            try
+            {
+                _bookContext.Authors.Add(author);
+                await _bookContext.SaveChangesAsync();
+                return author;
+            }
+            catch(Exception exiption)
+            {
+                throw new Exception($"Author will Not Create : {exiption.Message}");
+            }
             
         }
 
@@ -34,18 +45,31 @@ namespace WebApplication1.Repositories
 
         public async Task<Author> GetAuthor(int Id)
         {
-            return await _bookContext.Authors.Include(x => x.book_Authors).FirstOrDefaultAsync(X => X.Id == Id);
+            return await _bookContext.Authors.Include(x => x.Books).FirstOrDefaultAsync(X => X.Id == Id);
         }
 
         public async Task<IEnumerable<Author>> GetAuthors()
         {
-            return await _bookContext.Authors.Include(x => x.book_Authors).ToListAsync();
+            return await _bookContext.Authors.Include(x => x.Books).ToListAsync();
         }
 
         public async Task Update(Author author)
         {
+
+            if (author == null)
+            {
+                throw new ArgumentNullException($"{nameof(Update)} entity mustNn't to be null");
+            }
+            try
+            {
             _bookContext.Entry(author).State = EntityState.Modified;
             await _bookContext.SaveChangesAsync();
+
+            }
+            catch (Exception exiption)
+            {
+                throw new Exception($"Author will Not Create : {exiption.Message}");
+            };
         }
     }
 }

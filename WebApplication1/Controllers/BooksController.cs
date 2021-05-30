@@ -16,16 +16,19 @@ namespace WebApplication1.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IAuthorRepositories _authorRepositories;
 
-        public BooksController(IBookRepository bookRepository)
+        public BooksController(IBookRepository bookRepository, IAuthorRepositories authorRepositories)
         {
             _bookRepository = bookRepository;
+            _authorRepositories = authorRepositories;
+
         }
         [HttpGet]
-        public async Task<IEnumerable<NewBookResourse>> GetBooks()
+        public async Task<IEnumerable<BookPublisherResource>> GetBooks()
         {
             var BookEntities = await _bookRepository.Get();
-            var bookResources = new List<NewBookResourse>();
+            var bookResources = new List<BookPublisherResource>();
             foreach (var item in BookEntities)
             {
                 bookResources.Add(item.ToResourceNew());
@@ -34,7 +37,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<NewBookResourse>> GetBooks(int id)
+        public async Task<ActionResult<BookPublisherResource>> GetBooks(int id)
         {
             var BookEntities = await _bookRepository.Get(id);
             if (BookEntities is null)
@@ -42,54 +45,53 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
             return BookEntities.ToResourceNew();
-
-
-
         }
 
         [HttpPost]
 
-        public async Task<ActionResult<NewBookResourse>> PostBooks([FromBody] BookModel bookModel)
-        {
-            if (!ModelState.IsValid)
+            public async Task<ActionResult<BookPublisherResource>> PostBooks([FromBody] BookModel bookModel)
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+
+            var author = _authorRepositories.GetAuthors().Result.ToList().Where(item => bookModel.AuthorIds.Contains(item.Id)).ToList();
+                var newBook = new Book()
+                {
+                    Title = bookModel.Title,
+                    Discraptions = bookModel.Discraptions,
+                    PublisherId = bookModel.PublisherId,
+                    Authors= author
+                };
+
+                var newBooksss = await _bookRepository.Create(newBook);
+
+                return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBooksss.ToResourceNew());
             }
-
-            var newBook = new Book()
-            {
-                PublisherId = bookModel.PublisherId,
-                Title = bookModel.Title,
-                Discraptions = bookModel.Discraptions
-            };
-
-            var newBooksss = await _bookRepository.Create(newBook);
-
-            return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBooksss.ToResourceNew());
-        }
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<NewBookResourse>> PutBooks(int id, [FromBody] BookModel book)
+        public async Task<ActionResult<BookPublisherResource>> PutBooks(int id, [FromBody] BookModel book)
         {
             var bookToUpdate = await _bookRepository.Get(id);
             if (bookToUpdate == null)
             {
                 return NotFound();
             }
-
+       
+            var author = _authorRepositories.GetAuthors().Result.ToList().Where(item => book.AuthorIds.Contains(item.Id)).ToList();
             var newBook = new Book()
             {
                 PublisherId = bookToUpdate.PublisherId,
                 Title = bookToUpdate.Title,
-                Discraptions = bookToUpdate.Discraptions
+                Discraptions = bookToUpdate.Discraptions,
+                Authors = author
+
             };
             var BookEntities = await _bookRepository.Update(newBook);
             var bookResources = BookEntities.ToResourceNew();
             return bookResources;
-
-
-
-
 
         }
         [HttpDelete("{id}")]
