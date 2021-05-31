@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IEnumerable<PublisherResourse>> GetPublishers()
         {
-            var PublisherEntities=  await _repository.GetPublishers();
+            var PublisherEntities = await _repository.GetPublishers();
 
             var publisherResource = new List<PublisherResourse>();
 
@@ -49,14 +49,14 @@ namespace WebApplication1.Controllers
             var newPublisherEntity = new Publisher()
             {
                 Name = newPublisherModel.Name,
-                Email= newPublisherModel.Email,
+                Email = newPublisherModel.Email,
                 DateOfBirth = newPublisherModel.DateOfBirth,
-                Salery= newPublisherModel.Salery
+                Salery = newPublisherModel.Salery
             };
 
             var newPublisher = await _repository.CreatePublisher(newPublisherEntity);
 
-            return  CreatedAtAction(nameof(GetPublisher),new { Id= newPublisherEntity.Id }, newPublisher.ToResource());
+            return CreatedAtAction(nameof(GetPublisher), new { Id = newPublisherEntity.Id }, newPublisher.ToResource());
         }
         [HttpPut("{id}")]
 
@@ -68,14 +68,15 @@ namespace WebApplication1.Controllers
             existingEntity.Name = model.Name;
             var updatedEntity = await _repository.updatePublisher(existingEntity);
             return Ok(updatedEntity.ToResource());
-        } 
+        }
         [HttpDelete("{Id}")]
         public async Task<ActionResult> DeleteResource(int Id)
         {
             var BookToDelete = await _repository.GetPublisher(Id);
             if (BookToDelete is null) return NotFound();
-            
+
             await _repository.deletePublisher(BookToDelete.Id);
             return NoContent();
         }
-}}
+    }
+}
