@@ -25,44 +25,38 @@ namespace WebApplication1.Controllers
             _bookRepository = bookRepository;
 
         }
-
         [HttpGet]
         public async Task<IEnumerable<AuthorResource>> GetAuthors()
         {
-            var AuthorEntities =  await _reposotiry.GetAuthors();
+            var AuthorEntities = await _reposotiry.GetAuthors();
 
             var ResponseAuthor = new List<AuthorResource>();
 
-            foreach(var item in AuthorEntities)
+            foreach (var item in AuthorEntities)
             {
                 ResponseAuthor.Add(item.ToResource());
             }
             return ResponseAuthor;
-
         }
         [HttpGet("{id}")]
         public async Task<AuthorResource> GetAuthor(int id)
         {
-           var AuthorEntitiy =  await _reposotiry.GetAuthor(id);
+            var AuthorEntitiy = await _reposotiry.GetAuthor(id);
 
             return AuthorEntitiy.ToResource();
         }
         [HttpPost]
         public async Task<ActionResult<AuthorResource>> CreateAuthor([FromBody] AuthorModel Entitiy)
         {
-
             var AuthEntitiy = new Author()
             {
                 FullName = Entitiy.FullName,
-                Email= Entitiy.Email,
-                Age= Entitiy.Age,
-               
-
+                Email = Entitiy.Email,
+                Age = Entitiy.Age,
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
             return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResourceNEw());
         }
-
         [HttpPut("{Id}")]
 
         public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
@@ -83,23 +77,18 @@ namespace WebApplication1.Controllers
         {
             var bookToDelete = await _reposotiry.GetAuthor(id);
             if (bookToDelete == null)
-
                 return NotFound();
-         
-           var wantedToDeleted =  await _reposotiry.GetAuthor(id);
-            if (wantedToDeleted.Books == null)
+
+            if (bookToDelete.Books.Count == 0)
             {
-            return NoContent();
+                await _reposotiry.Delete(bookToDelete.Id);
+
+                return NoContent();
             }
             else
             {
-                await _reposotiry.Delete(id);
-
+                return BadRequest("can't delete Publisher has Book");
             }
-            return NoContent();
-
         }
-
-
     }
 }
