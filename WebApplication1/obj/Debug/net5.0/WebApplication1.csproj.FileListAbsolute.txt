@@ -176,3 +176,7 @@ C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\obj\Debug\net5.
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.RazorTargetAssemblyInfo.cache
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.csproj.CopyComplete
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
+C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\bin\Debug\net5.0\DataAccessLayer.dll
+C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\bin\Debug\net5.0\Domain.dll
+C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\bin\Debug\net5.0\DataAccessLayer.pdb
+C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\WebApplication1\bin\Debug\net5.0\Domain.pdb

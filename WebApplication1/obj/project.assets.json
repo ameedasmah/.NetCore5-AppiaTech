@@ -2667,6 +2667,32 @@
         "runtime": {
           "lib/netstandard1.1/xunit.execution.dotnet.dll": {}
         }
+      },
+      "DataAccessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccessLayer.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.6"
+        },
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -8502,10 +8528,22 @@
         "xunit.extensibility.execution.2.4.1.nupkg.sha512",
         "xunit.extensibility.execution.nuspec"
       ]
+    },
+    "DataAccessLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataAccessLayer/DataAccessLayer.csproj",
+      "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "DataAccessLayer >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 5.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
@@ -8542,7 +8580,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Ameed\\Desktop\\AmeedWork\\WebApplication1\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\Ameed\\Desktop\\AmeedWork\\WebApplication1\\DataAccessLayer\\DataAccessLayer.csproj"
+            },
+            "C:\\Users\\Ameed\\Desktop\\AmeedWork\\WebApplication1\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Ameed\\Desktop\\AmeedWork\\WebApplication1\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
