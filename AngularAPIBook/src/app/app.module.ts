@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BookDetailsFormComponent } from './book-details-form/book-details-form.component';
 import { BookDeatilsComponent } from './book-deatils/book-deatils.component';
 import { PublisherDetailsComponent } from './publisher-details/publisher-details.component';
 import { PublisherFormComponent } from './publisher-form/publisher-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,10 +17,13 @@ import { PublisherFormComponent } from './publisher-form/publisher-form.componen
     BookDetailsFormComponent,
     BookDeatilsComponent,
     PublisherDetailsComponent,
-    PublisherFormComponent
+    PublisherFormComponent,
+    NavBarComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatToolbarModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
