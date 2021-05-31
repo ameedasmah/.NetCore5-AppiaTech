@@ -13,9 +13,10 @@ namespace WebApplication1.Entities
         [Required]
         [StringLength(25, MinimumLength = 2)]
         public string  Name { get; set; }
-        [Required]
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")]
+        [Required(ErrorMessage = "Pole wymagane")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "Email Address cannot have white spaces")]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
