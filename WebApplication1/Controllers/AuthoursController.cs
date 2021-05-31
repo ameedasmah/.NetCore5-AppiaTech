@@ -59,17 +59,17 @@ namespace WebApplication1.Controllers
         }
         [HttpPut("{Id}")]
 
-        public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
+        public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel model)
         {
-            var authorEntities = new Author()
-            {
-                FullName = authorModel.FullName,
-                Email = authorModel.Email,
-                Age = authorModel.Age,
-            };
-            var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
+            var existingEntitiy = await _reposotiry.GetAuthor(Id);
+            if (existingEntitiy is null) { return NotFound(); }
 
-            return NoContent();
+            existingEntitiy.FullName = model.FullName;
+            existingEntitiy.Email = model.Email;
+            existingEntitiy.Age = model.Age;
+
+            var UpdateEntitiy = await _reposotiry.Update(existingEntitiy);
+            return Ok(UpdateEntitiy.ToResource());
         }
 
         [HttpDelete("{id}")]

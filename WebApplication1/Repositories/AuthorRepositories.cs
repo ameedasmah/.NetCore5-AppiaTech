@@ -8,7 +8,7 @@ using WebApplication1.Entities;
 
 namespace WebApplication1.Repositories
 {
-    public class AuthorRepositories:IAuthorRepositories
+    public class AuthorRepositories : IAuthorRepositories
     {
         private readonly BookContext _bookContext;
 
@@ -29,11 +29,11 @@ namespace WebApplication1.Repositories
                 await _bookContext.SaveChangesAsync();
                 return author;
             }
-            catch(Exception exiption)
+            catch (Exception exiption)
             {
                 throw new Exception($"Author will Not Create : {exiption.Message}");
             }
-            
+
         }
 
         public async Task Delete(int Id)
@@ -45,18 +45,27 @@ namespace WebApplication1.Repositories
 
         public async Task<Author> GetAuthor(int Id)
         {
-            return await _bookContext.Authors.Include(x => x.Books).FirstOrDefaultAsync(X => X.Id == Id);
+            try
+            {
+
+                return await _bookContext.Authors.Include(x => x.Books).FirstOrDefaultAsync(X => X.Id == Id);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"handel Your Id method broo :D:D:D:D:D:D : {exception.Message}");
+            }
         }
 
         public async Task<ICollection<Author>> GetAuthors(Func<Author, bool> predicate)
         {
-            if (predicate != null) {
+            if (predicate != null)
+            {
                 return _bookContext.Authors.Include(x => x.Books).Where(predicate).ToList();
             }
             return await _bookContext.Authors.Include(x => x.Books).ToListAsync();
         }
 
-        public async Task Update(Author author)
+        public async Task<Author> Update(Author author)
         {
 
             if (author == null)
@@ -65,8 +74,9 @@ namespace WebApplication1.Repositories
             }
             try
             {
-            _bookContext.Entry(author).State = EntityState.Modified;
-            await _bookContext.SaveChangesAsync();
+                _bookContext.Authors.Update(author);
+                await _bookContext.SaveChangesAsync();
+                return author;
 
             }
             catch (Exception exiption)
