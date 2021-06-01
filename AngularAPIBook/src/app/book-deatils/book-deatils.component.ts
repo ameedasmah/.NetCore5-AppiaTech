@@ -14,10 +14,11 @@ export class BookDeatilsComponent implements OnInit {
   constructor(private bookService: BookService) {
 
   }
+  headers = ["Id", "title", "discraptions", "publisherId", 'newpublisher']
   ngOnInit(): void {
     console.log('hi', this.bookService)
 
     this.bookResource$ = this.bookService.loadBooks();
+    this.bookResource$.subscribe(data => console.log(data))
   }
-
 }

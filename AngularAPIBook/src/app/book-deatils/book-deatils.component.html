@@ -1,1 +1,29 @@
 <p>book-deatils works!</p>
+<h2>My custom Table</h2>
+<table>
+    <tr>
+        <th *ngFor="let column of headers" style="padding: 1rem;">
+            {{column}}
+        </th>
+    </tr>
+    <tr *ngFor="let bookResource of(bookResource$ |async)">
+        <td style="padding-left: 1rem;">
+            {{bookResource.id}}
+        </td>
+        <td style="padding-left: 1rem;">
+            {{bookResource.title}}
+        </td>
+        <td style="padding-left: 1rem;">
+            {{bookResource.discraptions}}
+        </td>
+        <td style="padding-left: 2rem;">
+            {{bookResource.publisherId}}
+        </td>
+        <td style="padding-left: 2rem;">
+            {{bookResource.newpublisher?.id}}, {{bookResource.newpublisher?.name}}
+        </td>
+        <!-- <td>
+                    {{bookResource?.bookAuthorResources?.toString()}}
+                </td> -->
+    </tr>
+</table>
