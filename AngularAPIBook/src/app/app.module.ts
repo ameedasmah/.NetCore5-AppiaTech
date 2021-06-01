@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouteModuleModule } from './shared/app-route-module.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppRouteModuleModule } from './shared/app-route-module.module';
     BrowserModule,
     MatToolbarModule,
     RoutingModule,
-    AppRouteModuleModule
+    AppRouteModuleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
