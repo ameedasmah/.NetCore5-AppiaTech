@@ -12,8 +12,8 @@
         <td style="padding-left: 1rem;">
             {{publisherResource.name}}
         </td>
-        <td style="padding-left: 1rem;">
-            <span *ngFor="let book of publisherResource.books">
+        <td>
+            <span style="padding-left: .3rem;" *ngFor="let book of publisherResource.books">
                 {{book.id.toString()}}
             </span>
         </td>

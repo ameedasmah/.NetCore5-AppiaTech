@@ -19,7 +19,7 @@
             {{author.age}}
         </td>
         <td>
-            <span *ngFor="let book of AuthorResource.books">
+            <span *ngFor="let book of author.books">
                 {{book.title.toString()}}
             </span>
         </td>
