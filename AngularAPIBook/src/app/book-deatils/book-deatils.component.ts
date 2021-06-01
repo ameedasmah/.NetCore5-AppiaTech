@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BookResource } from '../shared/book-service.model';
-
+import { BookService } from '../shared/book-service.service';
 @Component({
   selector: 'app-book-deatils',
   templateUrl: './book-deatils.component.html',
@@ -9,11 +10,14 @@ import { BookResource } from '../shared/book-service.model';
 })
 export class BookDeatilsComponent implements OnInit {
 
-  bookResource = BookResource
-  constructor(private http: HttpClient) { }
+  bookResource$: Observable<BookResource[]>
+  constructor(private bookService: BookService) {
 
+  }
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/books').subscribe(data => console.log('Book', data))
+    console.log('hi', this.bookService)
+
+    this.bookResource$ = this.bookService.loadBooks();
   }
 
 }
