@@ -1,1 +1,21 @@
 <p>publisher-details works!</p>
+<table>
+    <tr>
+        <th *ngFor="let cloumn of headers" style="padding: 1rem;">
+            {{cloumn}}
+        </th>
+    </tr>
+    <tr *ngFor="let publisherResource of PublisherResource">
+        <td>
+            {{publisherResource.id}}
+        </td>
+        <td>
+            {{publisherResource.name}}
+        </td>
+        <td>
+            <span *ngFor="let book of publisherResource.books">
+                {{book.id.toString()}}
+            </span>
+        </td>
+    </tr>
+</table>

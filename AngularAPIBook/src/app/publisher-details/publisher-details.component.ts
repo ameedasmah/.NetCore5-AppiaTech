@@ -10,12 +10,14 @@ import { BookService } from './../shared/book-service.service';
 })
 export class PublisherDetailsComponent implements OnInit {
 
-  PublisherResource$: Observable<PublisherResourceModule[]>
+  PublisherResource: PublisherResourceModule[]
   constructor(private bookService: BookService) { }
-
+  headers = ["id", "name", "books"]
   ngOnInit(): void {
-    this.PublisherResource$ = this.bookService.loadPublisher();
-    this.PublisherResource$.subscribe(data => console.log(data));
+    this.bookService.loadPublisher()
+      .subscribe(data => {
+        this.PublisherResource = data;
+      });
   }
 
 }
