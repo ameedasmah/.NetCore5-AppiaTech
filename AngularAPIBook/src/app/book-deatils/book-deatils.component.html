@@ -6,7 +6,7 @@
             {{column}}
         </th>
     </tr>
-    <tr *ngFor="let bookResource of(bookResource$ |async)">
+    <tr *ngFor="let bookResource of bookResource ">
         <td style="padding-left: 1rem;">
             {{bookResource.id}}
         </td>
@@ -20,10 +20,11 @@
             {{bookResource.publisherId}}
         </td>
         <td style="padding-left: 2rem;">
-            {{bookResource.newpublisher?.id}}, {{bookResource.newpublisher?.name}}
+            {{bookResource.newpublisher.id}}, {{bookResource.newpublisher.name}}
         </td>
-        <!-- <td>
-                    {{bookResource?.bookAuthorResources?.toString()}}
-                </td> -->
+        <td>
+            <span style="padding-left: 2rem;" *ngFor="let bookAuthorResourse of bookResource.bookAuthorResources ">
+                {{bookAuthorResourse.fullName?.toString()}}</span>
+        </td>
     </tr>
 </table>
