@@ -23,8 +23,8 @@
             {{bookResource.newpublisher.id}}, {{bookResource.newpublisher.name}}
         </td>
         <td>
-            <span style="padding-left: 2rem;" *ngFor="let bookAuthorResourse of bookResource.bookAuthorResources ">
-                {{bookAuthorResourse.fullName?.toString()}}</span>
+            <span *ngFor="let bookAuthorResourse of bookResource.bookAuthorResources ">
+                {{bookAuthorResourse.fullName.toString()}}</span>
         </td>
     </tr>
 </table>
