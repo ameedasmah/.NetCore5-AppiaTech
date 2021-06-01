@@ -6,13 +6,13 @@
         </th>
     </tr>
     <tr *ngFor="let publisherResource of PublisherResource">
-        <td>
+        <td style="padding-left: 1rem;">
             {{publisherResource.id}}
         </td>
-        <td>
+        <td style="padding-left: 1rem;">
             {{publisherResource.name}}
         </td>
-        <td>
+        <td style="padding-left: 1rem;">
             <span *ngFor="let book of publisherResource.books">
                 {{book.id.toString()}}
             </span>

@@ -1,1 +1,27 @@
 <p>author-details works!</p>
+<table>
+    <tr>
+        <th *ngFor="let cloumn of headers" style="padding-left: 1rem;">
+            {{cloumn}}
+        </th>
+    </tr>
+    <tr *ngFor=" let author of AuthorResource">
+        <td style="padding-left: 1rem;">
+            {{author.id}}
+        </td>
+        <td style="padding-left: 1rem;">
+            {{author.fullName}}
+        </td>
+        <td style="padding-left: 1rem;">
+            {{author.email}}
+        </td>
+        <td style="padding-left: 1rem;">
+            {{author.age}}
+        </td>
+        <td>
+            <span *ngFor="let book for AuthorResource.Books" style="padding-left: 1rem;">
+                {{book.title.toString()}}
+            </span>
+        </td>
+    </tr>
+</table>

@@ -9,13 +9,16 @@ import { BookService } from './../shared/book-service.service';
   styleUrls: ['./author-details.component.css']
 })
 export class AuthorDetailsComponent implements OnInit {
-  AuthorResource$: Observable<AuthorResourceModule[]>
+  AuthorResource: AuthorResourceModule[]
   constructor(private bookService: BookService) { }
+  headers = ["id", "fullName", "email", "age", "books"];
 
   ngOnInit(): void {
-    this.AuthorResource$ = this.bookService.loadAuthors();
+    this.bookService.loadAuthors().subscribe(data => {
+      console.log(data)
+      return this.AuthorResource = data;
+    });
 
-    this.AuthorResource$.subscribe(data => console.log(data))
   }
 
 }

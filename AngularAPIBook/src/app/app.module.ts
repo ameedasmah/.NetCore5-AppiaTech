@@ -12,6 +12,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouteModuleModule } from './shared/app-route-module.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthorDetailsComponent } from './author-details/author-details.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,16 @@ import { HttpClientModule } from '@angular/common/http';
     PublisherDetailsComponent,
     PublisherFormComponent,
     NavBarComponent,
+    AuthorDetailsComponent
   ],
   imports: [
     BrowserModule,
     MatToolbarModule,
     RoutingModule,
     AppRouteModuleModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
