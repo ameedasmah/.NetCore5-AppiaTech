@@ -1,7 +1,8 @@
 .navbar {
-    justify-content:
+    /* display: flex;
+    justify-content: space-evenly; */
 }
 
 span {
-    padding-right: 1px;
+    padding: 1px;
 }
