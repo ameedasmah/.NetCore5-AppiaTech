@@ -1,1 +1,27 @@
-<p>publisher-form works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    value:{{myForm.value|json}}
+    <mat-form-field class="example-full-width">
+        <mat-label>name</mat-label>
+        <input matInput placeholder="name" formControlName="name" >
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+        <mat-label>email</mat-label>
+        <input matInput placeholder="email" formControlName="email" >
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+        <mat-label>dateOfBirth</mat-label>
+        <input matInput placeholder="dateOfBirth" formControlName="dateOfBirth" >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>salery</mat-label>
+        <input matInput placeholder="salery" formControlName="salery" >
+       
+      </mat-form-field>
+
+    <div style="padding-left: 30rem;">
+        <button type="submit">Submit</button>
+    </div>
+    </form>

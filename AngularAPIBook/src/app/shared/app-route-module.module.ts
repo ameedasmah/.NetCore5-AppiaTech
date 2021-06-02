@@ -5,6 +5,7 @@ import { BookDeatilsComponent } from './../book-deatils/book-deatils.component';
 import { PublisherDetailsComponent } from './../publisher-details/publisher-details.component';
 import { AuthorDetailsComponent } from './../author-details/author-details.component';
 import { AuthorFormComponent } from './../author-form/author-form.component';
+import {PublisherFormComponent} from './../publisher-form/publisher-form.component';
 
 
 
@@ -19,22 +20,29 @@ export const routes: Routes = [
     component: PublisherDetailsComponent,
   },
   {
+    path: "publisher",
+    children:[
+      {
+        path: "create",
+        component: PublisherFormComponent,
+      },
+    ]
+  },
+  {
     path: "author",
     component: AuthorDetailsComponent,
   },
   {
     path: "author",
-    children: [{ path: 'create', component: AuthorFormComponent }
-    ],
+    children: [{ path: 'create', component: AuthorFormComponent }],
   },
-
 ]
 
 
 @NgModule({
   // declarations: [],
   imports: [
-    RouterModule.forRoot(routes)
+  RouterModule.forRoot(routes)
   ],
   exports: [RouterModule,],
 

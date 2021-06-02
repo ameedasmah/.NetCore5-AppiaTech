@@ -17,7 +17,7 @@ myForm = new FormGroup({
   constructor(private bookService :BookService) { }
   
   onSubmit(){
-    this.bookService.AddPublisher(this.myForm.value).subscribe(data=>console.log('data',data))
+    this.bookService.AddAuthor(this.myForm.value).subscribe(data=>console.log('data',data))
     
   }
   ngOnInit(): void {
@@ -25,13 +25,3 @@ myForm = new FormGroup({
   }
 
 }
-
-
-
-// postAuthors():Observable<AuthorResourceModule>{
-//   this.http.post('https://localhost:5001/api/authours',{
-//    FullName:this.FullName,
-//    email:this.email,
-//    age:this.age
-//  }).toPromise().then((data:any)=>console.log(data))
-//    }
