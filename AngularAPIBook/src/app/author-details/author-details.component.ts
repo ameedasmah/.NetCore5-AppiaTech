@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { routes } from '../shared/app-route-module.module';
 import { AuthorResourceModule } from './../shared/author-resource.module';
 import { BookService } from './../shared/book-service.service';
 
@@ -10,7 +11,10 @@ import { BookService } from './../shared/book-service.service';
 })
 export class AuthorDetailsComponent implements OnInit {
   AuthorResource: AuthorResourceModule[]
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,
+    public route:ActivatedRoute,
+    private router: Router) {
+     }
   headers = ["id", "fullName", "email", "age", "books"];
 
   ngOnInit(): void {
@@ -18,7 +22,9 @@ export class AuthorDetailsComponent implements OnInit {
       console.log(data)
       return this.AuthorResource = data;
     });
-
   }
-
+  createNewAuthor(){
+    this.router.navigate(['create'],{relativeTo:this.route});
+  }
+  
 }

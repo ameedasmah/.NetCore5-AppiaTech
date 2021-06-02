@@ -15,6 +15,7 @@ import { AppRouteModuleModule } from './shared/app-route-module.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthorFormComponent } from './author-form/author-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommonModule } from '@angular/common';
     PublisherDetailsComponent,
     PublisherFormComponent,
     NavBarComponent,
-    AuthorDetailsComponent
+    AuthorDetailsComponent,
+    AuthorFormComponent
   ],
   imports: [
     BrowserModule,

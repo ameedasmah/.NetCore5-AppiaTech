@@ -4,9 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookDeatilsComponent } from './../book-deatils/book-deatils.component';
 import { PublisherDetailsComponent } from './../publisher-details/publisher-details.component';
 import { AuthorDetailsComponent } from './../author-details/author-details.component';
+import { AuthorFormComponent } from './../author-form/author-form.component';
 
 
-const routes: Routes = [
+
+
+export const routes: Routes = [
   {
     path: "book",
     component: BookDeatilsComponent,
@@ -19,6 +22,12 @@ const routes: Routes = [
     path: "author",
     component: AuthorDetailsComponent,
   },
+  {
+    path: "author",
+    children: [{ path: 'create', component: AuthorFormComponent }
+    ],
+  },
+
 ]
 
 
@@ -27,7 +36,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule],
+  exports: [RouterModule,],
 
 })
 export class AppRouteModuleModule { }
