@@ -1,1 +1,23 @@
-<p>author-form works!</p>
+
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+value:{{myForm.value|json}}
+<mat-form-field class="example-full-width">
+    <mat-label>FullName</mat-label>
+    <input matInput placeholder="fullName" formControlName="fullName" >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>email</mat-label>
+    <input matInput placeholder="email" formControlName="email" >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>age</mat-label>
+    <input matInput placeholder="age" formControlName="age" >
+  </mat-form-field>
+<div style="padding-left: 30rem;">
+    <button type="submit">Submit</button>
+</div>
+</form>
+

@@ -13,9 +13,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouteModuleModule } from './shared/app-route-module.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthorFormComponent } from './author-form/author-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { AuthorFormComponent } from './author-form/author-form.component';
     PublisherFormComponent,
     NavBarComponent,
     AuthorDetailsComponent,
-    AuthorFormComponent
+    AuthorFormComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,11 @@ import { AuthorFormComponent } from './author-form/author-form.component';
     AppRouteModuleModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
