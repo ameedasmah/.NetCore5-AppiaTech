@@ -12,16 +12,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PublisherDetailsComponent implements OnInit {
 
   PublisherResource: PublisherResourceModule[]
-  constructor(private bookService: BookService,public route:ActivatedRoute,private router:Router) { }
-  headers = ["id", "name", "books"]
+  constructor(private bookService: BookService, public route: ActivatedRoute, private router: Router) { }
+  headers = ["id", "name", "books", "Delete", "Edit"];
+  id: number;
+  data: any;
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id']
     this.bookService.loadPublisher()
       .subscribe(data => {
         this.PublisherResource = data;
       });
-    }
-    createNewPublisher(){
-this.router.navigate(['create'],{relativeTo:this.route});
-    }
+    // this.bookService.loadOnePublisher(this.id).subscribe(data => {
+    //   this.data = data;
+    //   console.log('id with data', data)
+    // })
+  }
+
+
+  createNewPublisher() {
+    this.router.navigate(['create'], { relativeTo: this.route });
+  }
+
+  delete(id: number) {
+    this.bookService.deletePublisher(id)
+  }
+
 
 }

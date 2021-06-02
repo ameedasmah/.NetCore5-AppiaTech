@@ -17,7 +17,17 @@
                 {{book.id.toString()}}
             </span>
         </td>
+        <td style="padding-left: 1rem;">
+             <a (click)="delete(publisherResource.id)" >Delete</a>
+        </td>
+     
     </tr>
 </table>
 <button (click)="createNewPublisher()" >Post a Publisher</button>
 <router-outlet></router-outlet>
+
+
+<!-- 
+<td style="padding-left: 1rem;">
+    <a [routerLink]="['/create/',publisherResource.id]" >Edit</a>
+</td> -->

@@ -26,6 +26,10 @@ export const routes: Routes = [
         path: "create",
         component: PublisherFormComponent,
       },
+      {
+        path: "create/:id",
+        component: PublisherFormComponent,
+      },
     ]
   },
   {

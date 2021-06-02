@@ -16,13 +16,14 @@ export class BookService {
     const params = new HttpParams().set("page", "1").set("pageSize", "10");
     return this.http.get<BookResource[]>('https://localhost:5001/api/books', { params })
   }
-  loadPublisher(): Observable<PublisherResourceModule[]> {
-    return this.http.get<PublisherResourceModule[]>('https://localhost:5001/api/publisher')
-  }
+  
+
+  // author
+  // Get Author
   loadAuthors(): Observable<AuthorResourceModule[]> {
     return this.http.get<AuthorResourceModule[]>('https://localhost:5001/api/authours')
   }
-
+// Post Author
   AddAuthor(response:any):Observable<any>{
     const obj ={
       fullName: response.fullName,
@@ -38,6 +39,18 @@ export class BookService {
       .post('https://localhost:5001/api/authours', body, options)
       .pipe(map((res: any) => res));
   }
+
+// Publisher Service
+// get Publisher
+  loadPublisher(): Observable<PublisherResourceModule[]> {
+    return this.http.get<PublisherResourceModule[]>('https://localhost:5001/api/publisher')
+  }
+  // get publisher by Id
+  loadOnePublisher(id:any):Observable<any>{
+    return this.http.get<any>('https://localhost:5001/api/publisher/'+id);
+  }
+
+  // Post Publisher
   addPublisher(response:any):Observable<any>{
     const obj = {
       name:response.name,
@@ -54,5 +67,10 @@ export class BookService {
     .pipe(map((res:any)=>res))
   }
 
+// delete Publisher
+
+deletePublisher(id:any){
+  this.http.delete('https://localhost:5001/api/Publisher/'+id);
+}
 
 }
