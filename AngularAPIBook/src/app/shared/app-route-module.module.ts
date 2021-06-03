@@ -22,7 +22,7 @@ export const routes: Routes = [
      { 
        path:"create",
       component:BookDetailsFormComponent
-    }
+    },
     ]
   },
   {
@@ -48,9 +48,12 @@ export const routes: Routes = [
   },
   {
     path: "author",
-    children: [{ path: 'create', component: AuthorFormComponent }],
-  },
-]
+    children: [{ path: 'create', component: AuthorFormComponent },
+    {
+       path: "create/:id",
+     component: AuthorFormComponent
+     },
+]}]
 
 
 @NgModule({

@@ -15,8 +15,7 @@ export class AuthorDetailsComponent implements OnInit {
     public route:ActivatedRoute,
     private router: Router) {
      }
-  headers = ["id", "fullName", "email", "age", "books","Delete"];
-
+  headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
   ngOnInit(): void {
     this.bookService.loadAuthors().subscribe(data => {
       console.log(data)
@@ -27,8 +26,14 @@ export class AuthorDetailsComponent implements OnInit {
     this.router.navigate(['create'],{relativeTo:this.route});
   }
   deleteAuthor(id:number){
-    console.log(id);
+    // console.log(id);
     this.bookService.deleteAuthor(id);
+  }
+
+  Edit(id:number){
+    console.log(id)
+    this.router.navigate(['create/'+id],{relativeTo:this.route})
+
   }
   
 }
