@@ -63,7 +63,7 @@ export class BookService {
 
   //PutAuthor
 
-  updteAuthor(id: any, res: any):Observable<any> {
+  updteAuthor(id: any, res: any): Observable<any> {
     let obj = {
       fullName: res.fullName,
       email: res.email,
@@ -73,14 +73,14 @@ export class BookService {
     let headers = new HttpHeaders({
       "Content-Type": "application/json;charset=utf-8;",
     })
-    const options = {headers:headers};
-    return this.http.put('https://localhost:5001/api/authours/'+id,body,options)
-    .pipe(map((res:any)=>res));
+    const options = { headers: headers };
+    return this.http.put('https://localhost:5001/api/authours/' + id, body, options)
+      .pipe(map((res: any) => res));
   }
 
   // delete Author
   deleteAuthor(id: number) {
-    this.http.delete('https://localhost:5001/api/authours/' + id).subscribe();
+    return this.http.delete('https://localhost:5001/api/authours/' + id);
   }
 
   // Publisher Service

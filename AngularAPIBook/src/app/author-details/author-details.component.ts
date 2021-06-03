@@ -17,19 +17,20 @@ export class AuthorDetailsComponent implements OnInit {
      }
   headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
   ngOnInit(): void {
-    this.bookService.loadAuthors().subscribe(data => {
-      console.log(data)
-      return this.AuthorResource = data;
-    });
+    this.getData();
   }
   createNewAuthor(){
     this.router.navigate(['create'],{relativeTo:this.route});
   }
   deleteAuthor(id:number){
-    // console.log(id);
-    this.bookService.deleteAuthor(id);
+    this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
   }
-
+getData(){
+  this.bookService.loadAuthors().subscribe(data => {
+    console.log(data)
+    return this.AuthorResource = data;
+  });
+}
   Edit(id:number){
     console.log(id)
     this.router.navigate(['create/'+id],{relativeTo:this.route})
