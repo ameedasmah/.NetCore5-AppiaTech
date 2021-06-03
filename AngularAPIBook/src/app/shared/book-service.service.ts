@@ -98,5 +98,20 @@ deleteBook(id:number){
 deletePublisher(id:any){
   this.http.delete('https://localhost:5001/api/Publisher/'+id).subscribe();
 }
+PutPublisher(id:number,response:any):Observable<any>{
+  const obj = {
+    name:response.name,
+    email:response.email,
+    dateOfBirth:response.dateOfBirth,
+    salery:response.salery,
+  }
+  const body = JSON.stringify(obj);
+  const headers = new HttpHeaders({
+    "Content-Type": "application/json;charset=utf-8;"
+  })
+  const options = {headers:headers};
+  return this.http.put('https://localhost:5001/api/Publisher/'+id,body,options)
+  .pipe(map((res:any)=>res))
+}
 
 }
