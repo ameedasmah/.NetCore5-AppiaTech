@@ -1,5 +1,11 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<p style="text-align: center; padding-top: 2rem;"><em>Create New Publisher</em></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()"
+ style="align-items: center; justify-content: center;padding-top: 2rem;">
+    <div 
+    style="border:2px solid;background-color: rgb(246, 210, 210);padding-left: 8rem;padding-top: 2rem;padding-bottom: 2rem;">
     value:{{myForm.value|json}}
+  </div>
     <mat-form-field class="example-full-width">
         <mat-label>name</mat-label>
         <input matInput placeholder="name" formControlName="name" >
@@ -25,3 +31,4 @@
         <button type="submit">Submit</button>
     </div>
     </form>
+  </div>

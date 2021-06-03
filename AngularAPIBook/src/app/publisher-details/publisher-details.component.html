@@ -1,32 +1,33 @@
-<p>publisher-details works!</p>
+<p style="text-align: center;padding-top: 3rem;"><em><b>publisher-details works!</b></em></p>
+<div style="display: flex;flex-wrap: wrap; justify-content: center;">
 <table>
     <tr>
-        <th *ngFor="let cloumn of headers" style="padding: 1rem;">
+        <th *ngFor="let cloumn of headers" style="padding: 1rem; border: 0.3px solid black;">
             {{cloumn}}
         </th>
     </tr>
     <tr *ngFor="let publisherResource of PublisherResource">
-        <td style="padding-left: 1rem;">
+        <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{publisherResource.id}}
         </td>
-        <td style="padding-left: 1rem;">
+        <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             {{publisherResource.name}}
         </td>
-        <td>
-            <span style="padding-left: .3rem;" *ngFor="let book of publisherResource.books">
-                {{book.id.toString()}}
+        <td  style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+            <span *ngFor="let book of publisherResource.books" >
+                {{book.id.toString()}} 
             </span>
         </td>
-        <td style="padding-left: 1rem;">
-             <button (click)= "deletePublisher(publisherResource.id)">Delete</button>
+        <td style="padding-left: 0.5rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+             <button style="background-color:rgb(238, 123, 123);" (click)= "deletePublisher(publisherResource.id)">Delete</button>
         </td>
-        <td style="padding-left: 1rem;">
-            <button (click)="edit(publisherResource.id)">Edit</button>
+        <td style="padding-left: 0.5rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+            <button style="background-color:rgb(238, 123, 123);" (click)="edit(publisherResource.id)">Edit</button>
        </td>
     </tr>
 </table>
-
-<button (click)="createNewPublisher()" >Post a Publisher</button>
+</div>
+<button (click)="createNewPublisher()" style="margin-left: 42rem; margin-top: 3rem; background-color:rgb(238, 123, 123)">Post a Publisher</button>
 <router-outlet></router-outlet>
 
 

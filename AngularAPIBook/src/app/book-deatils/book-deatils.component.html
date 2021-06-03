@@ -1,42 +1,44 @@
-<p>book-deatils works!</p>
-<h2>My custom Table</h2>
-<table>
+
+<h2 style="text-align: center; padding-top: 50px;"><b>My custom Table</b></h2>
+<div style="display: flex; flex-direction: column;">
+<table style="align-self: center; align-items: center;">
     <tr>
-        <th *ngFor="let column of headers" style="padding: 1rem;">
+        <th *ngFor="let column of headers" style="padding: 1rem; border: 0.3px solid black;">
             {{column}}
         </th>
     </tr>
     <tr *ngFor="let bookResource of bookResource ">
-        <td style="padding-left: 1rem;">
+        <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{bookResource.id}}
         </td>
-        <td style="padding-left: 1rem;">
+        <td style="padding-left: 1rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             {{bookResource.title}}
         </td>
-        <td style="padding-left: 1rem;">
+        <td style="padding-left: 1rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             {{bookResource.discraptions}}
         </td>
-        <td style="padding-left: 1.6rem;">
+        <td style="padding-left: 1.6rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             {{bookResource.publisherId}}
         </td>
-        <td style="padding-left: 1.6rem;">
+        <td style="padding-left: 1.6rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
              {{bookResource.newpublisher.name}}
         </td>
-        <td>
+        <td style="border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             <span style="padding-left: 2rem;" *ngFor="let bookAuthorResourse of bookResource.bookAuthorResources ">
                 {{bookAuthorResourse.fullName.toString()}}</span>
         </td>
-        <td style="padding-left:.5rem;">
-            <button >Edit</button>
+        <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+            <button style="background-color:rgb(238, 123, 123)" >Edit</button>
         </td>
 
-        <td style="padding-left:.5rem;">
-            <button (click)="deleteBook(bookResource.id)">Delete</button>
+        <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+            <button style="background-color:rgb(238, 123, 123)"  (click)="deleteBook(bookResource.id)">Delete</button>
         </td>
     </tr>
 </table>
-
-    <button (click)="CreateNewBook()" style="margin-left: 3rem; margin-top: 3rem;" >Create new Book</button>
+</div>
+<button (click)="CreateNewBook()" style="margin-left: 55rem; margin-top: 3rem; background-color:rgb(238, 123, 123)" >Create new Book</button>
+<div></div>
 
 <router-outlet></router-outlet>
 

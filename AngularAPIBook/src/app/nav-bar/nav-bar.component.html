@@ -1,11 +1,15 @@
-<mat-toolbar color='primary' class="navbar" style="display: flex;">
-    <a> <span style="flex-wrap: wrap; justify-content: center;">My Application</span></a>
-    <a routerLink="/" style='color: aliceblue;'>
-        <span style="padding-left: 650px;">home</span></a>
+<mat-toolbar color='primary' class="navbar" >
+    <a> <span >My Application</span></a>
+    <div  style='color: aliceblue; display: flex; flex-direction: row; '>
+    <a routerLink="/">
+        <span style="padding: 1rem;" >home</span></a>
     <a routerLink="book" style="color: aliceblue;">
-        <span>Book</span></a>
+        <span  style="padding: 1rem;">Book</span></a>
     <a routerLink="publisher" style="color: aliceblue;">
-        <span>Publisher</span></a>
+        <span  style="padding: 1rem;">Publisher</span></a>
     <a routerLink="author" style="color: aliceblue;"><span>Author</span></a>
+</div>
 </mat-toolbar>
+
+
 <router-outlet></router-outlet>

@@ -1,7 +1,8 @@
-<p>book-details-form works!</p>
-
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    value:{{myForm.value|json}}
+<p style="text-align: center; padding-top: 2rem;"><em>Create New Book</em></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="align-items: center; justify-content: center;padding-top: 2rem;">
+   <div style="border: 2px solid;background-color: rgb(246, 210, 210);padding-left: 8rem;padding-top: 2rem;padding-bottom: 2rem;">
+     {{myForm.value|json}}</div>
 
     <mat-form-field class="example-full-width">
         <mat-label>title</mat-label>
@@ -19,6 +20,7 @@
     </mat-form-field>
 
     <div>
-        <button type="submit">Submit</button>
+        <button style="background-color: rgb(246, 210, 210);" type="submit">Submit</button>
     </div>
 </form>
+</div>

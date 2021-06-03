@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { AuthorFormComponent } from './author-form/author-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from "@angular/material/icon"
 
 
 
@@ -45,7 +46,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
