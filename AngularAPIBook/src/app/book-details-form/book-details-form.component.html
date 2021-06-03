@@ -1,1 +1,24 @@
 <p>book-details-form works!</p>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    value:{{myForm.value|json}}
+
+    <mat-form-field class="example-full-width">
+        <mat-label>title</mat-label>
+        <input matInput placeholder="title" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>discraptions</mat-label>
+        <input matInput placeholder="discraptions" formControlName="discraptions">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>publisherId</mat-label>
+        <input matInput placeholder="publisherId" formControlName="publisherId">
+    </mat-form-field>
+
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>

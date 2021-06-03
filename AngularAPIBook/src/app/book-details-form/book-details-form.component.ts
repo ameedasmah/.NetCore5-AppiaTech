@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../shared/book-service.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BookService } from './../shared/book-service.service';
 
 @Component({
   selector: 'app-book-details-form',
@@ -7,10 +8,18 @@ import { BookService } from '../shared/book-service.service';
   styleUrls: ['./book-details-form.component.css']
 })
 export class BookDetailsFormComponent implements OnInit {
+  myForm= new FormGroup({
+    title:new FormControl(''),
+    discraptions:new FormControl(''),
+    publisherId:new FormControl(''),
+  })
 
-  constructor() { }
+  constructor(private bookService:BookService) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(){
+    this.bookService.postBook(this.myForm.value).subscribe(data=>console.log('a',data))
+  }
 }

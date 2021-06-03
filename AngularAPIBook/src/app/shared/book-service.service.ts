@@ -11,11 +11,32 @@ import { AuthorResourceModule } from './author-resource.module';
 })
 export class BookService {
   constructor(private http: HttpClient) { }
-
+// book
+// get Books
   loadBooks(): Observable<BookResource[]> {
     const params = new HttpParams().set("page", "1").set("pageSize", "10");
     return this.http.get<BookResource[]>('https://localhost:5001/api/books', { params })
   }
+// Post Book
+postBook(res:any):Observable<any>{
+let obj = {
+  title:res.title,
+  discraptions:res.discraptions,
+  publisherId:res.publisherId,
+}
+const body = JSON.stringify(obj);
+const headers= new HttpHeaders({
+  "Content-Type": "application/json;charset=utf-8;",
+});
+const options = {headers:headers};
+return this.http.post('https://localhost:5001/api/books',body,options)
+.pipe(map((res:any)=>res));
+}
+
+//dekete Books
+deleteBook(id:number){
+  this.http.delete('https://localhost:5001/api/books/'+id).subscribe();
+}
   
 
   // author
@@ -38,6 +59,11 @@ export class BookService {
     return this.http
       .post('https://localhost:5001/api/authours', body, options)
       .pipe(map((res: any) => res));
+  }
+
+  // delete Author
+  deleteAuthor(id:number){
+    this.http.delete('https://localhost:5001/api/authours/'+id).subscribe();
   }
 
 // Publisher Service
@@ -70,7 +96,7 @@ export class BookService {
 // delete Publisher
 
 deletePublisher(id:any){
-  this.http.delete('https://localhost:5001/api/Publisher/'+id);
+  this.http.delete('https://localhost:5001/api/Publisher/'+id).subscribe();
 }
 
 }

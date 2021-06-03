@@ -33,8 +33,9 @@ export class PublisherDetailsComponent implements OnInit {
     this.router.navigate(['create'], { relativeTo: this.route });
   }
 
-  delete(id: number) {
-    this.bookService.deletePublisher(id)
+  deletePublisher(id: number) {
+    console.log(id);
+   return this.bookService.deletePublisher(id);
   }
 
 

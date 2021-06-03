@@ -6,6 +6,7 @@ import { PublisherDetailsComponent } from './../publisher-details/publisher-deta
 import { AuthorDetailsComponent } from './../author-details/author-details.component';
 import { AuthorFormComponent } from './../author-form/author-form.component';
 import {PublisherFormComponent} from './../publisher-form/publisher-form.component';
+import { BookDetailsFormComponent } from '../book-details-form/book-details-form.component';
 
 
 
@@ -14,6 +15,15 @@ export const routes: Routes = [
   {
     path: "book",
     component: BookDeatilsComponent,
+  },
+  {
+    path: "book",
+    children:[
+     { 
+       path:"create",
+      component:BookDetailsFormComponent
+    }
+    ]
   },
   {
     path: "publisher",
