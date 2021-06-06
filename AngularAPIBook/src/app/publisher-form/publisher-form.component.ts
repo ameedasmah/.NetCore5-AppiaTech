@@ -19,12 +19,12 @@ export class PublisherFormComponent implements OnInit {
     salery:new FormControl(''),
   })
   onSubmit(){
-    if(this.id==0){
-      this.bookService.addPublisher(this.myForm.value).subscribe(data=>console.log(data))
-    }
-    else{
+    if(this.id){
       this.bookService.PutPublisher(this.id,this.myForm.value).subscribe(data=>console.log(data))
-    }
+      this.router.navigate(['/publisher'],{relativeTo:this.route});
+      }
+      this.bookService.addPublisher(this.myForm.value).subscribe(data=>console.log(data))
+      this.router.navigate(['/publisher'],{relativeTo:this.route});
   }
   ngOnInit(): void {
      this.route.params.subscribe(params=>{

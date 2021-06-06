@@ -23,6 +23,7 @@ export class BookService {
       title: res.title,
       discraptions: res.discraptions,
       publisherId: res.publisherId,
+      authorIds:res.authors,
     }
     const body = JSON.stringify(obj);
     const headers = new HttpHeaders({
@@ -113,7 +114,7 @@ export class BookService {
   // delete Publisher
 
   deletePublisher(id: any) {
-    this.http.delete('https://localhost:5001/api/Publisher/' + id).subscribe();
+  return  this.http.delete('https://localhost:5001/api/Publisher/' + id);
   }
   PutPublisher(id: number, response: any): Observable<any> {
     const obj = {

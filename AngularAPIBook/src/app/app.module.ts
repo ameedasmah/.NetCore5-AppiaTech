@@ -17,8 +17,10 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthorFormComponent } from './author-form/author-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from "@angular/material/icon"
+import { MatInputModule, } from '@angular/material/input';
+import { MatIconModule, } from "@angular/material/icon";
+import { AutoSelectComponent } from './auto-select/auto-select.component'
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -33,6 +35,7 @@ import { MatIconModule } from "@angular/material/icon"
     NavBarComponent,
     AuthorDetailsComponent,
     AuthorFormComponent,
+    AutoSelectComponent,
     
   ],
   imports: [
@@ -47,7 +50,8 @@ import { MatIconModule } from "@angular/material/icon"
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

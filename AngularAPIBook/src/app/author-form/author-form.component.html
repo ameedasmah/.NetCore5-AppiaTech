@@ -1,7 +1,7 @@
 
 <p style="text-align: center; padding-top: 2rem;"><em><b>Create New Author</b></em></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="align-items: center; justify-content: center;padding-top: 2rem;">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="position: relative;align-items: center; justify-content: center;padding-top: 2rem;">
   <div style="border: 2px solid;background-color: rgb(246, 210, 210);padding-left: 8rem;padding-top: 2rem;padding-bottom: 2rem;">
   value:{{myForm.value|json}}
 </div>
@@ -19,7 +19,7 @@
     <mat-label>age</mat-label>
     <input matInput placeholder="age" formControlName="age" >
   </mat-form-field>
-<div style="padding-left: 30rem;">
+<div style="position: absolute ; left: 430px;top: 300px;">
     <button type="submit">Submit</button>
 </div>
 </form>

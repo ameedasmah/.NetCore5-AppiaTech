@@ -18,14 +18,9 @@ export class PublisherDetailsComponent implements OnInit {
   data: any;
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
-    this.bookService.loadPublisher()
-      .subscribe(data => {
-        this.PublisherResource = data;
-      });
-    // this.bookService.loadOnePublisher(this.id).subscribe(data => {
-    //   this.data = data;
-    //   console.log('id with data', data)
-    // })
+  
+      this.getData();
+ 
   }
 
 
@@ -34,13 +29,17 @@ export class PublisherDetailsComponent implements OnInit {
   }
 
   deletePublisher(id: number) {
-    console.log(id);
-   return this.bookService.deletePublisher(id);
+   return this.bookService.deletePublisher(id).subscribe(()=>this.getData());
   }
   edit(id:number){
     console.log(id)
     this.router.navigate(['create/'+id],{relativeTo:this.route})
   }
-
+getData(){
+  this.bookService.loadPublisher()
+      .subscribe(data => {
+        this.PublisherResource = data;
+      });
+}
 
 }

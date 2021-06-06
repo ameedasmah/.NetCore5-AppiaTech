@@ -1,5 +1,5 @@
 <h2 style="text-align: center; padding-top: 50px;"><b>My custom Table</b></h2>
-<div style="display: flex; flex-direction: column;">
+<div style="display: flex; flex-direction: column;position: relative;">
 <table  style="align-self: center; align-items: center;">
     <tr>
         <th *ngFor="let cloumn of headers" style="padding: 1rem; border: 0.3px solid black;">
@@ -32,10 +32,12 @@
         </td>
     </tr>
 </table>
+<div style="position: absolute; left: 700px; top: 150px;">
+<button  style="background-color:rgb(238, 123, 123)" (click)="createNewAuthor()">
+    CraeteAuthor
+</button>
 </div>
-    <button  style="margin-left: 51rem; margin-top: 3rem; background-color:rgb(238, 123, 123)" (click)="createNewAuthor()">
-        CraeteAuthor
-    </button>
+</div>
 <router-outlet></router-outlet>
 
 <!-- <a [routerLink]="['create']">
