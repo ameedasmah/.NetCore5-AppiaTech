@@ -14,18 +14,18 @@ export class PublisherDetailsComponent implements OnInit {
   PublisherResource: PublisherResourceModule[]
   constructor(private bookService: BookService, public route: ActivatedRoute, private router: Router) { }
   headers = ["id", "name", "books", "Delete", "Edit"];
+  loadnePublisher:any;
   id: number;
   data: any;
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
   
       this.getData();
- 
   }
 
 
   createNewPublisher() {
-    this.router.navigate(['create'], { relativeTo: this.route });
+    this.router.navigate(['editcreate'], { relativeTo: this.route });
   }
 
   deletePublisher(id: number) {
@@ -33,7 +33,8 @@ export class PublisherDetailsComponent implements OnInit {
   }
   edit(id:number){
     console.log(id)
-    this.router.navigate(['create/'+id],{relativeTo:this.route})
+this.bookService.loadOnePublisher(id).subscribe(data=>console.log('DATAAAAA',data))
+    this.router.navigate(['editcreate/'+id],{relativeTo:this.route})
   }
 getData(){
   this.bookService.loadPublisher()
@@ -41,5 +42,4 @@ getData(){
         this.PublisherResource = data;
       });
 }
-
 }

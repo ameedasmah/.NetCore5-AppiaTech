@@ -20,7 +20,7 @@ export class AuthorDetailsComponent implements OnInit {
     this.getData();
   }
   createNewAuthor(){
-    this.router.navigate(['create'],{relativeTo:this.route});
+    this.router.navigate(['editcreate'],{relativeTo:this.route});
   }
   deleteAuthor(id:number){
     this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
@@ -33,7 +33,7 @@ getData(){
 }
   Edit(id:number){
     console.log(id)
-    this.router.navigate(['create/'+id],{relativeTo:this.route})
+    this.router.navigate(['editcreate/'+id],{relativeTo:this.route})
 
   }
   

@@ -23,7 +23,7 @@ export class BookDetailsFormComponent implements OnInit {
       discraptions:new FormControl(''),
       publisherId:new FormControl(''),
       authors: new FormControl([]),
-      // Publisher: new FormControl([])
+      Publisher: new FormControl([])
     }))
     this.bookService.loadAuthors().subscribe((data:any)=>data.forEach((item:any)=> {
       this.authorList.push(item);
