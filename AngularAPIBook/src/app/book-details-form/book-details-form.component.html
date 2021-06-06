@@ -18,21 +18,12 @@
         <mat-label>publisherId</mat-label>
         <input matInput placeholder="publisherId" formControlName="publisherId">
     </mat-form-field>
-
-    <!-- <mat-form-field class="example-full-width">
-        <mat-label> Author Id</mat-label>
-        <app-auto-select > </app-auto-select>
-    </mat-form-field> -->
-
 <mat-form-field appearance="fill">
     <mat-label>AuthorId</mat-label>
     <mat-select formControlName="authors" multiple>
       <mat-option *ngFor="let item of authorList" [value]="item.id">{{item.fullName}}</mat-option>
     </mat-select>
   </mat-form-field>
-
-
-    
     <div>
         <button style="background-color: rgb(246, 210, 210);" type="submit">Submit</button>
     </div>

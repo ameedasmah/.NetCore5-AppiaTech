@@ -10,26 +10,29 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./publisher-form.component.css']
 })
 export class PublisherFormComponent implements OnInit {
-   id=0;
-  constructor(private bookService:BookService ,public route: ActivatedRoute, private router: Router) { }
-  myForm= new FormGroup({
-    name:new FormControl(''),
-    email:new FormControl(''),
-    dateOfBirth:new FormControl(''),
-    salery:new FormControl(''),
+  id = 0;
+  constructor(private bookService: BookService, public route: ActivatedRoute, private router: Router) { }
+  myForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    dateOfBirth: new FormControl(''),
+    salery: new FormControl(''),
   })
-  onSubmit(){
-    if(this.id){
-      this.bookService.PutPublisher(this.id,this.myForm.value).subscribe(data=>console.log(data))
-      this.router.navigate(['/publisher'],{relativeTo:this.route});
-      }
-      this.bookService.addPublisher(this.myForm.value).subscribe(data=>console.log(data))
-      this.router.navigate(['/publisher'],{relativeTo:this.route});
+  onSubmit() {
+    if (this.id) {
+      this.bookService.PutPublisher(this.id, this.myForm.value).subscribe(data => console.log(data))
+      console.log('udpated')
+      this.router.navigate(['/publisher'], { relativeTo: this.route });
+    }
+    this.bookService.addPublisher(this.myForm.value).subscribe(data => console.log(data))
+    console.log('Post')
+    this.router.navigate(['/publisher'], { relativeTo: this.route });
   }
   ngOnInit(): void {
-     this.route.params.subscribe(params=>{
-      this.id=params['id']
-      console.log('this.id',this.id)
+    console.log('startupId',this.id)
+    this.route.params.subscribe(params => {
+      this.id = params['id']
+      console.log('this.id', this.id)
     })
   }
 

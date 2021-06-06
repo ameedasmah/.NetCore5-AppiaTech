@@ -13,16 +13,23 @@ export class BookDetailsFormComponent implements OnInit {
   myForm: FormGroup;
   authorIds: number[] = [];
   authorList: any[]= [];
+  publisherId:number[]=[];
+  publisherName:string[]=[];
+  PublisherList:any[]=[];
   constructor(private bookService:BookService, private route:ActivatedRoute, private router:Router) { }
   ngOnInit(): void {
     this.myForm= new FormGroup(({
       title:new FormControl(''),
       discraptions:new FormControl(''),
       publisherId:new FormControl(''),
-      authors: new FormControl([])
+      authors: new FormControl([]),
+      // Publisher: new FormControl([])
     }))
     this.bookService.loadAuthors().subscribe((data:any)=>data.forEach((item:any)=> {
       this.authorList.push(item);
+    }));
+    this.bookService.loadPublisher().subscribe((data:any)=>data.forEach((item:any) => {
+      this.PublisherList.push(item);
     }));
   }
   onSubmit(){
