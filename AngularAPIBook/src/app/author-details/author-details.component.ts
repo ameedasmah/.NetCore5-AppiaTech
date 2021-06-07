@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from '../shared/app-route-module.module';
 import { AuthorResourceModule } from './../shared/author-resource.module';
 import { BookService } from './../shared/book-service.service';
+import { Store } from '@ngrx/store';
+import { increment } from '../Store/action/Author.action';
+
 
 @Component({
   selector: 'app-author-details',
@@ -11,11 +14,19 @@ import { BookService } from './../shared/book-service.service';
 })
 export class AuthorDetailsComponent implements OnInit {
   AuthorResource: AuthorResourceModule[]
+  count:number=0;
+  headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
+
+
   constructor(private bookService: BookService,
     public route:ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private store:Store<any>
+   )
+   {
+   this.store.subscribe(data=>{this.count = data.Author.number; console.log('object',data)})
      }
-  headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
+
   ngOnInit(): void {
     this.getData();
   }
@@ -34,7 +45,13 @@ getData(){
   Edit(id:number){
     console.log(id)
     this.router.navigate(['create/'+id],{relativeTo:this.route})
-
   }
   
+  increament(){
+    this.store.dispatch(increment({number:2}))
+  }
+
+  decreament(){
+    // this.store.dispatch(new DecreamentAction(1))
+  }
 }

@@ -21,6 +21,8 @@ import { MatInputModule, } from '@angular/material/input';
 import { MatIconModule, } from "@angular/material/icon";
 import { AutoSelectComponent } from './auto-select/auto-select.component'
 import {MatSelectModule} from '@angular/material/select';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './Store/Store';
 
 
 
@@ -39,7 +41,7 @@ import {MatSelectModule} from '@angular/material/select';
     
   ],
   imports: [
-    BrowserModule,
+BrowserModule,
     MatToolbarModule,
     RoutingModule,
     AppRouteModuleModule,
@@ -51,7 +53,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [],
   bootstrap: [AppComponent]
