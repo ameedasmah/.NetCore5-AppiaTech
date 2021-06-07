@@ -20,7 +20,7 @@ export const routes: Routes = [
     path: "book",
     children:[
      { 
-       path:"editcreate",
+       path:"create",
       component:BookDetailsFormComponent
     },
     ]
@@ -33,11 +33,11 @@ export const routes: Routes = [
     path: "publisher",
     children:[
       {
-        path: "editcreate",
+        path: "create",
         component: PublisherFormComponent,
       },
       {
-        path: "editcreate/:id",
+        path: "create/:id",
         component: PublisherFormComponent,
       },
     ]
@@ -50,7 +50,7 @@ export const routes: Routes = [
     path: "author",
     children: [{ path: 'create', component: AuthorFormComponent },
     {
-       path: "editcreate/:id",
+       path: "create/:id",
      component: AuthorFormComponent
      },
 ]}]

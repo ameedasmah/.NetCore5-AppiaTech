@@ -25,7 +25,7 @@ export class PublisherDetailsComponent implements OnInit {
 
 
   createNewPublisher() {
-    this.router.navigate(['editcreate'], { relativeTo: this.route });
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 
   deletePublisher(id: number) {
@@ -34,11 +34,12 @@ export class PublisherDetailsComponent implements OnInit {
   edit(id:number){
     console.log(id)
 this.bookService.loadOnePublisher(id).subscribe(data=>console.log('DATAAAAA',data))
-    this.router.navigate(['editcreate/'+id],{relativeTo:this.route})
+    this.router.navigate(['create/'+id],{relativeTo:this.route})
   }
 getData(){
   this.bookService.loadPublisher()
       .subscribe(data => {
+        console.log('data Loaded!!', data)
         this.PublisherResource = data;
       });
 }
