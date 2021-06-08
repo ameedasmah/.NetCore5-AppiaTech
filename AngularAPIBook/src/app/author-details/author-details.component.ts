@@ -32,6 +32,7 @@ export class AuthorDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadAuthors())
     // this.getData();
+    
   }
   createNewAuthor(){
     this.router.navigate(['create'],{relativeTo:this.route});

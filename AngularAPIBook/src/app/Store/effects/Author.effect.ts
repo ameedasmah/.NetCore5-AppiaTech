@@ -5,6 +5,7 @@ import { map, exhaustMap, catchError } from 'rxjs/operators';
 import * as AuthorActions from '../action/Author.action';
 import { BookService } from './../../shared/book-service.service';
 import { AuthorModel } from './../../shared/Model/Author/Author.model';
+import { updateAuthorSuccess } from './../action/Author.action';
 
 @Injectable()
 export class AuthorEffects {
@@ -55,19 +56,18 @@ export class AuthorEffects {
   )
 );
 
+UpdateAuthors$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(AuthorActions.updateAuthor),
+  exhaustMap(action =>
+    this.bookService.updteAuthor(action.id,action.updateAuthor).pipe(
+      map(response => {
+        return AuthorActions.updateAuthorSuccess({updateAuthor:response})
+      }),
+      catchError((errorMessage: string) =>of(AuthorActions.updateAuthorFailure({errorMessage})))
+    ))
+)
+);
 
-
-
-  // AddAuthors$ = createEffect(() => this.actions$.pipe(
-  //   ofType(AuthorActions.addAuthor),
-  //   exhaustMap(action=>
-  //     this.bookService.AddAuthor(action.newAuthor).pipe(
-  //       map(response=>{
-  //         console.log('Postdata',response)
-  //         return AuthorActions.addAuthorSuccess({newAuthor:response})
-  //       }),
-        
-  //     ))
-  // ));
 
 }

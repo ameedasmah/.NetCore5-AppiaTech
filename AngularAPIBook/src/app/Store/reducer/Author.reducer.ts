@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { AuthorResource } from "src/app/shared/Author/author-resource/author-resource";
-import { increment ,getAuthorsSuccess, addAuthorSuccess, DeleteAuthorSuccess} from './../action/Author.action';
+import { increment, getAuthorsSuccess, addAuthorSuccess, DeleteAuthorSuccess, updateAuthorSuccess } from './../action/Author.action';
 
 export interface State{
     number:number;
@@ -15,7 +15,14 @@ export const Reducer = createReducer(initialState,
     on(increment,(state,{number})=>({...state,number:state.number+number})),
     on(getAuthorsSuccess, (state, action) => ({...state,Authors:action.Author})),
     on(addAuthorSuccess,(state, action)=>({...state, Authors: {...state.Authors, action} as AuthorResource[]})) ,
-    on(DeleteAuthorSuccess,(state,action)=>({...state}))
+    on(DeleteAuthorSuccess,(state,action)=>({...state})),
+    on(updateAuthorSuccess,(state,action)=>{
+        const updatedAuthors=action.updateAuthor;
+        return{
+            ...state,
+            item:updatedAuthors,
+        }
+    })
     );
 
 

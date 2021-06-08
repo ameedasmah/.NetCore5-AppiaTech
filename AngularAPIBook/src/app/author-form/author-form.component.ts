@@ -5,7 +5,7 @@ import { BookService } from '../shared/book-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthorModel } from './../shared/Model/Author/Author.model';
-import { addAuthor } from '../Store/action/Author.action';
+import { addAuthor, updateAuthor } from '../Store/action/Author.action';
 @Component({
   selector: 'app-author-form',
   templateUrl: './author-form.component.html',
@@ -14,7 +14,7 @@ import { addAuthor } from '../Store/action/Author.action';
 export class AuthorFormComponent implements OnInit {
   id = 0;
   constructor(private bookService: BookService, public route: ActivatedRoute, public router: Router,private store:Store) {
-    this.store.subscribe(data => console.log(data))
+    this.store.subscribe(data =>console.log(',,,,,,,',data))
    }
   myForm = new FormGroup({
     fullName: new FormControl(''),
@@ -24,6 +24,7 @@ export class AuthorFormComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.bookService.updteAuthor(this.id, this.myForm.value).subscribe(data => console.log(data))
+      // this.store.dispatch(updateAuthor({id,updateAuthor:this.myForm.value}))
       this.router.navigate(['/author'], { relativeTo: this.route });
     }
   
