@@ -26,28 +26,14 @@ props<{errorMessage: string}>()
 );
 
 
-// export enum AccountActionsTypes {
-//   AccountLogin = '[Login Page] Account Login',
-//   AccountLoginSuccess = '[Login Page] Account Login Success',
-//   AccountLoginFailed = '[Login Page] Account Login Failed',
+export const DeleteAuthor = createAction('DeleteAuthor',
+    props<{ id: number }>()
+  );
 
-//   AccountLogout = '[Header] Account Logout',
+  export const DeleteAuthorSuccess = createAction('DeleteAuthorSucsses',
+    props<{ id: number }>()
+  );
 
-//   AccountActivation = '[Activation page] Account Activation',
-//   AccountActivationSuccess = '[Activation page] Account Activation Success',
-//   AccountActivationFailed = '[Activation page] Account Activation Failed',
-// }
-
-// export const login = createAction(AccountActionsTypes.AccountLogin, props<{ email: string; password: string }>());
-
-// export const loginSuccess = createAction(AccountActionsTypes.AccountLoginSuccess, props< { account : AccountModel, token : string, message: string, status: string}>());
-
-// export const loginFailed = createAction(AccountActionsTypes.AccountLoginFailed);
-
-// export const logout = createAction(AccountActionsTypes.AccountLogout);
-
-// export const accountActivation = createAction(AccountActionsTypes.AccountActivation, props<{formula : string}>());
-
-// export const accountActivationSuccess = createAction(AccountActionsTypes.AccountActivationSuccess, props<{message : string}>());
-
-// export const accountActivationFailed = createAction(AccountActionsTypes.AccountActivationFailed, props<{error : string}>());
+  export const DeleteAuthorFailure = createAction('DeleteAuthorSuccessFailure',
+    props<{ errorMessage: string }>()
+  );

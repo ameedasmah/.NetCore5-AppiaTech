@@ -26,8 +26,7 @@ export class AuthorFormComponent implements OnInit {
       this.bookService.updteAuthor(this.id, this.myForm.value).subscribe(data => console.log(data))
       this.router.navigate(['/author'], { relativeTo: this.route });
     }
-    // this.bookService.AddAuthor(this.myForm.value).subscribe(data => console.log('data', data))
-    
+  
     this.store.dispatch(addAuthor({newAuthor: this.myForm.value as AuthorModel}));
     this.router.navigate(['/author'], { relativeTo: this.route });
   }

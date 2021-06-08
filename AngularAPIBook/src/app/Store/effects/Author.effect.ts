@@ -39,7 +39,24 @@ export class AuthorEffects {
           }),
         ))
     )
+  );
+
+
+  deleteAuthors$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthorActions.DeleteAuthor),
+    exhaustMap((action) =>
+      this.bookService.deleteAuthor(action.id).pipe(
+        map(() => {
+          return AuthorActions.DeleteAuthorSuccess({id:action.id})
+        }),
+        catchError((errorMessage: string) =>of(AuthorActions.DeleteAuthorFailure({errorMessage})))
+      ))
   )
+);
+
+
+
 
   // AddAuthors$ = createEffect(() => this.actions$.pipe(
   //   ofType(AuthorActions.addAuthor),

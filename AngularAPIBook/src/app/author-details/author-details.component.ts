@@ -5,6 +5,7 @@ import { BookService } from './../shared/book-service.service';
 import { Store } from '@ngrx/store';
 import { increment, loadAuthors } from '../Store/action/Author.action';
 import { AuthorResource } from '../shared/Author/author-resource/author-resource';
+import { DeleteAuthor } from './../Store/action/Author.action';
 
 
 
@@ -36,14 +37,15 @@ export class AuthorDetailsComponent implements OnInit {
     this.router.navigate(['create'],{relativeTo:this.route});
   }
   deleteAuthor(id:number){
-    this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
+    // this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
+    this.store.dispatch(DeleteAuthor({id}))
   }
-getData(){
-  this.bookService.loadAuthors().subscribe(data => {
-    console.log(data)
-    return this.AuthorResource = data;
-  });
-}
+// getData(){
+//   this.bookService.loadAuthors().subscribe(data => {
+//     console.log(data)
+//     return this.AuthorResource = data;
+//   });
+// }
   Edit(id:number){
     console.log(id)
     this.router.navigate(['create/'+id],{relativeTo:this.route})
