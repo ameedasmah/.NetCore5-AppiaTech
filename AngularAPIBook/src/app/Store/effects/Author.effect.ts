@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import * as AuthorActions from '../action/Author.action';
 import { BookService } from './../../shared/book-service.service';
+import { AuthorModel } from './../../shared/Model/Author/Author.model';
 
 @Injectable()
 export class AuthorEffects {
@@ -11,18 +12,45 @@ export class AuthorEffects {
   constructor(
     private actions$: Actions,
     private bookService: BookService
-  ) {}
+  ) { }
 
   GetAuthors$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AuthorActions.loadAuthors),
-    exhaustMap(action =>
-      this.bookService.loadAuthors().pipe(
-        map(response => {
-            console.log('ameed',response)
-            return AuthorActions.getAuthorsSuccess({Author: response})
-        }),
+    this.actions$.pipe(
+      ofType(AuthorActions.loadAuthors),
+      exhaustMap(action =>
+        this.bookService.loadAuthors().pipe(
+          map(response => {
+            console.log('ameed', response)
+            return AuthorActions.getAuthorsSuccess({ Author: response })
+          }),
         ))
     )
-  );
+  )
+
+
+  AddAuthors$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthorActions.addAuthor),
+      exhaustMap(action =>
+        this.bookService.AddAuthor(action.newAuthor).pipe(
+          map(response => {
+            console.log('ameed', response)
+            return AuthorActions.addAuthorSuccess({newAuthor:response})
+          }),
+        ))
+    )
+  )
+
+  // AddAuthors$ = createEffect(() => this.actions$.pipe(
+  //   ofType(AuthorActions.addAuthor),
+  //   exhaustMap(action=>
+  //     this.bookService.AddAuthor(action.newAuthor).pipe(
+  //       map(response=>{
+  //         console.log('Postdata',response)
+  //         return AuthorActions.addAuthorSuccess({newAuthor:response})
+  //       }),
+        
+  //     ))
+  // ));
+
 }

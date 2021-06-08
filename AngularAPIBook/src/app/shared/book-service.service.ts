@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { BookResource } from './book-service.model';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { PublisherResourceModule } from './publisher-resource.module';
-import { AuthorResourceModule } from './author-resource.module';
+import { AuthorResource } from '../shared/Author/author-resource/author-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -42,15 +42,15 @@ export class BookService {
 
   // author
   // Get Author
-  loadAuthors(): Observable<AuthorResourceModule[]> {
-    return this.http.get<AuthorResourceModule[]>('https://localhost:5001/api/authours')
+  loadAuthors(): Observable<AuthorResource[]> {
+    return this.http.get<AuthorResource[]>('https://localhost:5001/api/authours')
   }
   // Post Author
-  AddAuthor(response: any): Observable<any> {
+  AddAuthor(model: any): Observable<any> {
     const obj = {
-      fullName: response.fullName,
-      email: response.email,
-      age: response.age
+      fullName: model.fullName,
+      email: model.email,
+      age: model.age
     }
     const body = JSON.stringify(obj);
     const headers = new HttpHeaders({

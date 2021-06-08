@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from '../shared/app-route-module.module';
-import { AuthorResourceModule } from './../shared/author-resource.module';
 import { BookService } from './../shared/book-service.service';
 import { Store } from '@ngrx/store';
 import { increment, loadAuthors } from '../Store/action/Author.action';
+import { AuthorResource } from '../shared/Author/author-resource/author-resource';
+
 
 
 @Component({
@@ -13,7 +14,7 @@ import { increment, loadAuthors } from '../Store/action/Author.action';
   styleUrls: ['./author-details.component.css']
 })
 export class AuthorDetailsComponent implements OnInit {
-  AuthorResource: AuthorResourceModule[]
+  AuthorResource: AuthorResource[]
   count:number=0;
   headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
 
@@ -24,7 +25,7 @@ export class AuthorDetailsComponent implements OnInit {
     private store:Store<any>
    )
    {
-   this.store.subscribe(data=>{this.AuthorResource = data.Author.Authors ;  console.log('this.AuthorResource',this.AuthorResource)})
+   this.store.subscribe(data=>{this.AuthorResource = data.Author.Authors ;  console.log('this.AuthorResource',data)})
      }
 
   ngOnInit(): void {
