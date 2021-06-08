@@ -24,6 +24,7 @@ export class AuthorEffects {
             console.log('ameed', response)
             return AuthorActions.getAuthorsSuccess({ Author: response })
           }),
+          catchError((errorMessage: string) =>of(AuthorActions.getAuthorsFailure({errorMessage})))
         ))
     )
   )
@@ -38,6 +39,7 @@ export class AuthorEffects {
             console.log('ameed', response)
             return AuthorActions.addAuthorSuccess({newAuthor:response})
           }),
+          catchError((errorMessage: string) =>of(AuthorActions.addAuthorFailure({errorMessage})))
         ))
     )
   );

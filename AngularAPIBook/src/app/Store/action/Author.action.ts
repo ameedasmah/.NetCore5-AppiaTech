@@ -13,6 +13,9 @@ export const loadAuthors = createAction('loadAuthors')
 export const getAuthorsSuccess = createAction('getAuthorsSuccess',
     props<{ Author: AuthorResource[] }>()
 )
+export const getAuthorsFailure = createAction('addAuthorFailure',
+    props<{ errorMessage: string }>()
+);
 
 // add
 export const addAuthor = createAction('addAuthor',
