@@ -29,7 +29,7 @@
         </td>
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             <button  >
-                <mat-icon>Edit</mat-icon>
+                <mat-icon>edit</mat-icon>
             </button>
         </td>
 
@@ -43,11 +43,11 @@
 </table>
 </div>
 <div class="example-button-container">
-    <button (click)="CreateNewBook()" mat-mini-fab style="background-color: #00FF00;margin-left:50%;" aria-label="Example icon button with a plus one icon">
-      <mat-icon>plus_one</mat-icon>
+    <button color="accent" (click)="CreateNewBook()" mat-mini-fab style="margin-left:50%; margin-top: 4rem;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>add</mat-icon>
     </button>
   </div>
-<!-- <button (click)="CreateNewBook()" style="margin-left: 55rem; margin-top: 3rem; background-color:rgb(238, 123, 123)" >Create new Book</button> -->
+
 
 
 <router-outlet></router-outlet>

@@ -45,6 +45,10 @@ export class BookService {
   loadAuthors(): Observable<AuthorResource[]> {
     return this.http.get<AuthorResource[]>('https://localhost:5001/api/authours')
   }
+  // load one Author
+  loadOneAuthor(id: any): Observable<any> {
+    return this.http.get<any>('https://localhost:5001/api/authours/' + id);
+  }
   // Post Author
   AddAuthor(model: any): Observable<any> {
     const obj = {

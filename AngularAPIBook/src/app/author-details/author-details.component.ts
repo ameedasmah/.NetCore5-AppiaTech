@@ -16,23 +16,15 @@ import { DeleteAuthor } from './../Store/action/Author.action';
 })
 export class AuthorDetailsComponent implements OnInit {
   AuthorResource: AuthorResource[]
-  count: number = 0;
   headers = ["id", "fullName", "email", "age", "books", "Edit", "Delete"];
-
-
   constructor(private bookService: BookService,
     public route: ActivatedRoute,
     private router: Router,
     private store: Store<any>
   ) {
-    this.store.subscribe(data => { this.AuthorResource = data.Author.Authors; console.log('this.AuthorResource', data) })
+    this.store.subscribe(data => { this.AuthorResource = data.Author.Authors ;console.log('this.AuthorResource', this.AuthorResource) })
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(loadAuthors())
-    // this.getData();
-
-  }
   createNewAuthor() {
     this.router.navigate(['create'], { relativeTo: this.route });
   }
@@ -44,9 +36,7 @@ export class AuthorDetailsComponent implements OnInit {
     this.router.navigate(['create/' + id], { relativeTo: this.route })
   }
 
-  increament() {
-  }
-
-  decreament() {
+  ngOnInit(): void {
+    this.store.dispatch(loadAuthors())
   }
 }

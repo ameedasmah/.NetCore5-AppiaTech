@@ -13,14 +13,11 @@ import { addAuthor, updateAuthor } from '../Store/action/Author.action';
 })
 export class AuthorFormComponent implements OnInit {
   id = 0;
+  oldAuthor:any
   constructor(private bookService: BookService, public route: ActivatedRoute, public router: Router,private store:Store) {
     this.store.subscribe(data =>console.log(',,,,,,,',data))
    }
-  myForm = new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl(''),
-    age: new FormControl(''),
-  });
+  myForm : FormGroup;
   onSubmit() {
     if (this.id) {
       // this.bookService.updteAuthor(this.id, this.myForm.value).subscribe(data => console.log(data))
@@ -33,10 +30,27 @@ export class AuthorFormComponent implements OnInit {
   }
   }
   ngOnInit(): void {
+    this.myForm=new FormGroup({
+      fullName: new FormControl(''),
+      email: new FormControl(''),
+      age: new FormControl(''),
+    });
     console.log(',,,,', this.id)
     this.route.params.subscribe(params => {
       this.id = params['id']
-      console.log('hii', this.id)
+      console.log('IDobject',this.id)
+if(this.id){
+  this.loadAuthors()
+}
+    })
+  }
+  private loadAuthors(){
+    this.bookService.loadOneAuthor(this.id).subscribe((data:any)=>{
+      this.oldAuthor = data
+      console.log('object',data)
+      this.myForm.controls['fullName']?.patchValue(this.oldAuthor?.fullName);
+      this.myForm.controls['email']?.patchValue(this.oldAuthor?.email);
+      this.myForm.controls['age']?.patchValue(this.oldAuthor?.age);
     })
   }
 }
