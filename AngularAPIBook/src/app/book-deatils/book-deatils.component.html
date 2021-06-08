@@ -1,7 +1,7 @@
 
 <h2 style="text-align: center; padding-top: 50px;"><b>My custom Table</b></h2>
-<div style="display: flex; flex-direction: column;">
-<table style="align-self: center; align-items: center;">
+<div style="display: flex;justify-content: center;">
+<table style="width: 40%; margin-left: 15%;">
     <tr>
         <th *ngFor="let column of headers" style="padding: 1rem; border: 0.3px solid black;">
             {{column}}
@@ -28,17 +28,27 @@
                 {{bookAuthorResourse.fullName.toString()}}</span>
         </td>
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-            <button style="background-color:rgb(238, 123, 123)" >Edit</button>
+            <button  >
+                <mat-icon>Edit</mat-icon>
+            </button>
         </td>
 
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-            <button style="background-color:rgb(238, 123, 123)"  (click)="deleteBook(bookResource.id)">Delete</button>
+           
+            <button mat-fab style="background-color: aliceblue;"  (click)="deleteBook(bookResource.id)" >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
         </td>
     </tr>
 </table>
 </div>
-<button (click)="CreateNewBook()" style="margin-left: 55rem; margin-top: 3rem; background-color:rgb(238, 123, 123)" >Create new Book</button>
-<div></div>
+<div class="example-button-container">
+    <button (click)="CreateNewBook()" mat-mini-fab style="background-color: #00FF00;margin-left:50%;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>plus_one</mat-icon>
+    </button>
+  </div>
+<!-- <button (click)="CreateNewBook()" style="margin-left: 55rem; margin-top: 3rem; background-color:rgb(238, 123, 123)" >Create new Book</button> -->
+
 
 <router-outlet></router-outlet>
 

@@ -58,6 +58,13 @@ export class AuthorEffects {
   )
 );
 
+deleteAuthorsSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthorActions.DeleteAuthorSuccess),
+    map(() => AuthorActions.loadAuthors())
+  )
+);
+
 UpdateAuthors$ = createEffect(() =>
 this.actions$.pipe(
   ofType(AuthorActions.updateAuthor),

@@ -23,13 +23,14 @@ export class AuthorFormComponent implements OnInit {
   });
   onSubmit() {
     if (this.id) {
-      this.bookService.updteAuthor(this.id, this.myForm.value).subscribe(data => console.log(data))
-      // this.store.dispatch(updateAuthor({id,updateAuthor:this.myForm.value}))
+      // this.bookService.updteAuthor(this.id, this.myForm.value).subscribe(data => console.log(data))
+      this.store.dispatch(updateAuthor({id: this.id,updateAuthor:this.myForm.value}))
       this.router.navigate(['/author'], { relativeTo: this.route });
     }
-  
+  else{
     this.store.dispatch(addAuthor({newAuthor: this.myForm.value as AuthorModel}));
     this.router.navigate(['/author'], { relativeTo: this.route });
+  }
   }
   ngOnInit(): void {
     console.log(',,,,', this.id)

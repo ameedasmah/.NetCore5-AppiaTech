@@ -20,13 +20,15 @@ export class BookDeatilsComponent implements OnInit {
   }
   headers = ["Id", "title", "discraptions", "publisherId", 'newpublisher', 'bookAuthorResources', 'edit', 'Delete']
   ngOnInit(): void {
-    this.bookService.loadBooks().subscribe(data => this.bookResource = data);
+    this.getBook();
   }
   deleteBook(id: number) {
     console.log(id)
     this.bookService.deleteBook(id);
   }
-
+getBook(){
+  this.bookService.loadBooks().subscribe(data => this.bookResource = data);
+}
   CreateNewBook() {
     this.router.navigate(['create'], { relativeTo: this.route });
   }

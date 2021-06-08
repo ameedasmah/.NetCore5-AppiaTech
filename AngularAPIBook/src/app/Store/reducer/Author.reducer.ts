@@ -15,7 +15,6 @@ export const Reducer = createReducer(initialState,
     on(increment,(state,{number})=>({...state,number:state.number+number})),
     on(getAuthorsSuccess, (state, action) => ({...state,Authors:action.Author})),
     on(addAuthorSuccess,(state, action)=>({...state, Authors: {...state.Authors, action} as AuthorResource[]})) ,
-    on(DeleteAuthorSuccess,(state,action)=>({...state})),
     on(updateAuthorSuccess,(state,action)=>{
         const updatedAuthors=action.updateAuthor;
         return{

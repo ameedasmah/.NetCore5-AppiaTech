@@ -46,15 +46,15 @@ export const DeleteAuthorFailure = createAction('DeleteAuthorSuccessFailure',
 // update
 export const updateAuthor = createAction('updateAuthor',
 props<{id:number,updateAuthor: AuthorModel}>()
-)
+);
 
 
 export const updateAuthorSuccess = createAction('updateAuthorSuccess',
 props<{updateAuthor: AuthorResource}>()
-)
+);
 
 
 export const updateAuthorFailure = createAction('updateAuthorFailure',
 props<{errorMessage: string}>()
-)
+);
 

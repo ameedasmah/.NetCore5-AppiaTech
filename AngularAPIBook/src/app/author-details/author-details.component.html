@@ -32,20 +32,11 @@
         </td>
     </tr>
 </table>
-<div style="position: absolute; left: 700px; top: 150px;">
-<button  style="background-color:rgb(238, 123, 123)" (click)="createNewAuthor()">
-    CraeteAuthor
-</button>
-</div>
-</div>
-<div>
-    {{count}}
-    <button (click)='increament()'>increase</button>
-    <button (click)='decreament()'>decrease</button>
+<div class="example-button-container" >
+    <button mat-mini-fab color="accent" style="background-color: greenyellow; position: absolute; left: 60%;" aria-label="Example icon button with a plus one icon" (click)="createNewAuthor()">
+        <mat-icon>plus_one</mat-icon>
+    </button>
+    </div>
 </div>
 
 <router-outlet></router-outlet>
-
-<!-- <a [routerLink]="['create']">
-    CraeteAuthor
-</a> -->

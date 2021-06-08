@@ -16,47 +16,37 @@ import { DeleteAuthor } from './../Store/action/Author.action';
 })
 export class AuthorDetailsComponent implements OnInit {
   AuthorResource: AuthorResource[]
-  count:number=0;
-  headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
+  count: number = 0;
+  headers = ["id", "fullName", "email", "age", "books", "Edit", "Delete"];
 
 
   constructor(private bookService: BookService,
-    public route:ActivatedRoute,
+    public route: ActivatedRoute,
     private router: Router,
-    private store:Store<any>
-   )
-   {
-   this.store.subscribe(data=>{this.AuthorResource = data.Author.Authors ;  console.log('this.AuthorResource',data)})
-     }
+    private store: Store<any>
+  ) {
+    this.store.subscribe(data => { this.AuthorResource = data.Author.Authors; console.log('this.AuthorResource', data) })
+  }
 
   ngOnInit(): void {
     this.store.dispatch(loadAuthors())
     // this.getData();
-    
+
   }
-  createNewAuthor(){
-    this.router.navigate(['create'],{relativeTo:this.route});
+  createNewAuthor() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
-  deleteAuthor(id:number){
-    // this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
-    this.store.dispatch(DeleteAuthor({id}))
+  deleteAuthor(id: number) {
+    this.store.dispatch(DeleteAuthor({ id }))
   }
-// getData(){
-//   this.bookService.loadAuthors().subscribe(data => {
-//     console.log(data)
-//     return this.AuthorResource = data;
-//   });
-// }
-  Edit(id:number){
+  Edit(id: number) {
     console.log(id)
-    this.router.navigate(['create/'+id],{relativeTo:this.route})
-  }
-  
-  increament(){
-    this.store.dispatch(increment({number:2}))
+    this.router.navigate(['create/' + id], { relativeTo: this.route })
   }
 
-  decreament(){
-    // this.store.dispatch(new DecreamentAction(1))
+  increament() {
+  }
+
+  decreament() {
   }
 }
