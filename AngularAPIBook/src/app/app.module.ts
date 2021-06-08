@@ -26,9 +26,12 @@ import { reducers } from './Store/Store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthorEffects } from './Store/effects/Author.effect';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogPublisherComponent } from './dialog-publisher/dialog-publisher.component';
+import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
 
 
-
+MatDialogModule
 
 @NgModule({
   declarations: [
@@ -41,8 +44,11 @@ import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
     AuthorDetailsComponent,
     AuthorFormComponent,
     AutoSelectComponent,
+    DialogPublisherComponent,
+    
     
   ],
+  entryComponents:[DialogPublisherComponent],
   imports: [
 BrowserModule,
     MatToolbarModule,
@@ -57,6 +63,9 @@ BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatSelectModule,
+    MatDialogModule,
+    RxReactiveFormsModule,
+    
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([AuthorEffects])

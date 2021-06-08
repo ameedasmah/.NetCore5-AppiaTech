@@ -7,20 +7,23 @@
 </div>
 <mat-form-field class="example-full-width">
     <mat-label>FullName</mat-label>
-    <input matInput placeholder="fullName"  formControlName="fullName" >
+    <input  matInput placeholder="fullName"  formControlName="fullName" required minlength="8"  >
+    <small  style="padding-top: 1.5rem;" >FullName is required and Uniqe</small>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>email</mat-label>
     <input matInput placeholder="email" formControlName="email" >
+    <small style="padding-top: 1.5rem;" >name is required</small>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>age</mat-label>
     <input matInput placeholder="age" formControlName="age" >
+    <small style="padding-top: 1.5rem;" >Age should be betweet 1-120</small>
   </mat-form-field>
 <div style="position: absolute ; left: 430px;top: 300px;">
-    <button type="submit">Submit</button>
+    <button [disabled]="myForm.invalid" type="submit">Submit</button>
 </div>
 </form>
 </div>

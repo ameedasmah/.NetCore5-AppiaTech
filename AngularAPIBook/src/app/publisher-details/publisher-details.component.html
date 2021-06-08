@@ -19,7 +19,7 @@
             </span>
         </td>
         <td style="padding-left: 0.5rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-             <button style="background-color:rgb(238, 123, 123);" (click)= "deletePublisher(publisherResource.id)">Delete</button>
+             <button mat-raised-button (click)="openDialog()">Delete</button>
         </td>
         <td style="padding-left: 0.5rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
             <button style="background-color:rgb(238, 123, 123);" (click)="edit(publisherResource.id)">Edit</button>
@@ -31,6 +31,7 @@
 <router-outlet></router-outlet>
 
 
-<!-- <td style="padding-left: 1rem;">
-    <a [routerLink]="['/create/',publisherResource.id]" >Edit</a>
+<!-- <td style="padding-left: 0.5rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
+    <button style="background-color:rgb(238, 123, 123);" (click)= "deletePublisher(publisherResource.id)">Delete</button>
 </td> -->
+
