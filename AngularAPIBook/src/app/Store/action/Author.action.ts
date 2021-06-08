@@ -5,6 +5,7 @@ import { AuthorResourceModule } from './../../shared/author-resource.module';
 export const increment = createAction('Increment',
     props<{number:number}>()
 );
-export const getAuthors = createAction('getAuthors',
+export const loadAuthors = createAction('loadAuthors')
+export const getAuthorsSuccess = createAction('getAuthorsSuccess',
 props<{Author:AuthorResourceModule[]} >()
 )

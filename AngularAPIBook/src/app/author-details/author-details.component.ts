@@ -4,7 +4,7 @@ import { routes } from '../shared/app-route-module.module';
 import { AuthorResourceModule } from './../shared/author-resource.module';
 import { BookService } from './../shared/book-service.service';
 import { Store } from '@ngrx/store';
-import { increment } from '../Store/action/Author.action';
+import { increment, loadAuthors } from '../Store/action/Author.action';
 
 
 @Component({
@@ -24,11 +24,12 @@ export class AuthorDetailsComponent implements OnInit {
     private store:Store<any>
    )
    {
-   this.store.subscribe(data=>{this.count = data.Author.number; console.log('object',data)})
+   this.store.subscribe(data=>{this.AuthorResource = data.Author.Authors ;  console.log('this.AuthorResource',this.AuthorResource)})
      }
 
   ngOnInit(): void {
-    this.getData();
+    this.store.dispatch(loadAuthors())
+    // this.getData();
   }
   createNewAuthor(){
     this.router.navigate(['create'],{relativeTo:this.route});

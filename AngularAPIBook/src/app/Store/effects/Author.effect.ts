@@ -15,10 +15,13 @@ export class AuthorEffects {
 
   GetAuthors$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(AuthorActions.getAuthors),
+    ofType(AuthorActions.loadAuthors),
     exhaustMap(action =>
       this.bookService.loadAuthors().pipe(
-        map(response => AuthorActions.getAuthors(response as any)),
+        map(response => {
+            console.log('ameed',response)
+            return AuthorActions.getAuthorsSuccess({Author: response})
+        }),
         ))
     )
   );

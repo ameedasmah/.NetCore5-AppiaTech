@@ -23,6 +23,9 @@ import { AutoSelectComponent } from './auto-select/auto-select.component'
 import {MatSelectModule} from '@angular/material/select';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './Store/Store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthorEffects } from './Store/effects/Author.effect';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 
@@ -54,7 +57,9 @@ BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatSelectModule,
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([AuthorEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

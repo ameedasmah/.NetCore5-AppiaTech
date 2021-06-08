@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { increment ,getAuthors} from './../action/Author.action';
+import { increment ,getAuthorsSuccess} from './../action/Author.action';
 
 export interface State{
     number:number;
@@ -13,7 +13,7 @@ export const initialState :State = {
 
 export const Reducer = createReducer(initialState,
     on(increment,(state,{number})=>({...state,number:state.number+number})),
-    on(getAuthors, (state, {Author}) => ({...state,Authors:Author })) 
+    on(getAuthorsSuccess, (state, action) => ({...state,Authors:action.Author})) 
     );
 
 
