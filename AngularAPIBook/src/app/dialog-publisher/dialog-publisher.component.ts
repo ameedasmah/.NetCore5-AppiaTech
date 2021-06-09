@@ -10,9 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DialogPublisherComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,private route:ActivatedRoute) {
-
    }
-
   ngOnInit(): void {
   }
 delete(){

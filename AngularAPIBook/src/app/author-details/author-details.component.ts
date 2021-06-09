@@ -33,7 +33,7 @@ export class AuthorDetailsComponent implements OnInit {
   }
   Edit(id: number) {
     console.log(id)
-    this.router.navigate(['create/' + id], { relativeTo: this.route })
+    this.router.navigate(['edit/' + id], { relativeTo: this.route })
   }
 
   ngOnInit(): void {

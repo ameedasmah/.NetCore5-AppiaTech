@@ -15,7 +15,7 @@ export class PublisherDetailsComponent implements OnInit {
 
   PublisherResource: PublisherResourceModule[]
   constructor(private bookService: BookService, public route: ActivatedRoute, private router: Router,public dialog:MatDialog) { }
-  headers = ["id", "name", "books", "Delete", "Edit"];
+  headers = ["id", "name", "books", "Edit", "Delete"];
   loadnePublisher: any;
   id: number;
   data: any;
@@ -36,7 +36,7 @@ export class PublisherDetailsComponent implements OnInit {
   edit(id: number) {
     console.log(id)
     this.bookService.loadOnePublisher(id).subscribe(data => console.log('DATAAAAA', data))
-    this.router.navigate(['create/' + id], { relativeTo: this.route })
+    this.router.navigate(['edit/' + id], { relativeTo: this.route })
   }
   getData() {
     this.bookService.loadPublisher()
