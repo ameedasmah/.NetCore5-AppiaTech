@@ -14,6 +14,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class BookDeatilsComponent implements OnInit {
 
   bookResource: BookResource[]
+
   constructor(private bookService: BookService,
     public route: ActivatedRoute,
     private router: Router) {
@@ -31,5 +32,9 @@ getBook(){
 }
   CreateNewBook() {
     this.router.navigate(['create'], { relativeTo: this.route });
+  }
+  Edit(id: number) {
+    console.log(id)
+    this.router.navigate(['edit/' + id], { relativeTo: this.route })
   }
 }

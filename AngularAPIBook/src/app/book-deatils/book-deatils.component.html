@@ -28,15 +28,15 @@
                 {{bookAuthorResourse.fullName.toString()}}</span>
         </td>
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-            <button  >
-                <mat-icon>edit</mat-icon>
+            <button (click)="Edit(bookResource.id) ">
+                <mat-icon color="primary">edit</mat-icon>
             </button>
         </td>
 
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
            
             <button mat-fab style="background-color: aliceblue;"  (click)="deleteBook(bookResource.id)" >
-                <mat-icon>delete_outline</mat-icon>
+                <mat-icon color="primary">delete</mat-icon>
               </button>
         </td>
     </tr>
@@ -44,10 +44,9 @@
 </div>
 <div class="example-button-container">
     <button color="accent" (click)="CreateNewBook()" mat-mini-fab style="margin-left:50%; margin-top: 4rem;" aria-label="Example icon button with a plus one icon">
-      <mat-icon>add</mat-icon>
+      <mat-icon color="primary">add</mat-icon>
     </button>
   </div>
-
 
 
 <router-outlet></router-outlet>
