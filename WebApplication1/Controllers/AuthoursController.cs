@@ -17,30 +17,31 @@ namespace WebApplication1.Controllers
     public class AuthoursController : ControllerBase
     {
         private readonly IAuthorRepositories _reposotiry;
+        private readonly IBookRepository _bookRepository;
 
-        public AuthoursController(IAuthorRepositories reposotiry)
+        public AuthoursController(IAuthorRepositories reposotiry, IBookRepository bookRepository)
         {
             _reposotiry = reposotiry;
-        }
+            _bookRepository = bookRepository;
 
+        }
         [HttpGet]
         public async Task<IEnumerable<AuthorResource>> GetAuthors()
         {
-            var AuthorEntities =  await _reposotiry.GetAuthors();
+            var AuthorEntities = await _reposotiry.GetAuthors();
 
             var ResponseAuthor = new List<AuthorResource>();
 
-            foreach(var item in AuthorEntities)
+            foreach (var item in AuthorEntities)
             {
                 ResponseAuthor.Add(item.ToResource());
             }
             return ResponseAuthor;
-
         }
         [HttpGet("{id}")]
         public async Task<AuthorResource> GetAuthor(int id)
         {
-           var AuthorEntitiy =  await _reposotiry.GetAuthor(id);
+            var AuthorEntitiy = await _reposotiry.GetAuthor(id);
 
             return AuthorEntitiy.ToResource();
         }
@@ -50,40 +51,44 @@ namespace WebApplication1.Controllers
             var AuthEntitiy = new Author()
             {
                 FullName = Entitiy.FullName,
-                Email= Entitiy.Email,
-                Age= Entitiy.Age,
+                Email = Entitiy.Email,
+                Age = Entitiy.Age,
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
-            return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResource());
+            return CreatedAtAction(nameof(GetAuthor), new { id = AuthortOEntities.Id }, AuthortOEntities.ToResourceNEw());
         }
+        [HttpPut("{Id}")]
 
-        //[HttpPut("{Id}")]
+        public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel model)
+        {
+            var existingEntitiy = await _reposotiry.GetAuthor(Id);
+            if (existingEntitiy is null) { return NotFound(); }
 
-        //public async Task<ActionResult> PutAuthor(int Id, [FromBody] AuthorModel authorModel)
-        //{
-        //    var authorEntities = new Author()
-        //    {
-        //        FullName = authorModel.FullName,
-        //        Email = Entitiy.Email,
-        //        Age = Entitiy.Age,
-        //    };
-        //    var AuthorUpdateEntitiy = _reposotiry.Update(authorEntities);
+            existingEntitiy.FullName = model.FullName;
+            existingEntitiy.Email = model.Email;
+            existingEntitiy.Age = model.Age;
 
-        //    return NoContent();
-        //}
+            var UpdateEntitiy = await _reposotiry.Update(existingEntitiy);
+            return Ok(UpdateEntitiy.ToResource());
+        }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             var bookToDelete = await _reposotiry.GetAuthor(id);
             if (bookToDelete == null)
-
                 return NotFound();
 
-            await _reposotiry.Delete(bookToDelete.Id);
-            return NoContent();
+            if (bookToDelete.Books.Count == 0)
+            {
+                await _reposotiry.Delete(bookToDelete.Id);
+
+                return NoContent();
+            }
+            else
+            {
+                return BadRequest("can't delete Publisher has Book");
+            }
         }
-
-
     }
 }

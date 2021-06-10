@@ -84,28 +84,6 @@ namespace WebApplication1.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Book_Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("book_Authors");
-                });
-
             modelBuilder.Entity("WebApplication1.Entities.Publisher", b =>
                 {
                     b.Property<int>("Id")
@@ -157,25 +135,6 @@ namespace WebApplication1.Migrations
                         .IsRequired();
 
                     b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("WebApplication1.Entities.Book_Author", b =>
-                {
-                    b.HasOne("WebApplication1.Entities.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplication1.Data.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("WebApplication1.Entities.Publisher", b =>

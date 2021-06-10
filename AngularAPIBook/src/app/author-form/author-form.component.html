@@ -1,0 +1,26 @@
+
+<p style="text-align: center; padding-top: 2rem;"><em><b>Create New Author</b></em></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="position: relative;align-items: center; justify-content: center;padding-top: 2rem;">
+  <div style="border: 2px solid;background-color: rgb(246, 210, 210);padding-left: 8rem;padding-top: 2rem;padding-bottom: 2rem;">
+  value:{{myForm.value|json}}
+</div>
+<mat-form-field class="example-full-width">
+    <mat-label>FullName</mat-label>
+    <input matInput placeholder="fullName" formControlName="fullName" >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>email</mat-label>
+    <input matInput placeholder="email" formControlName="email" >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>age</mat-label>
+    <input matInput placeholder="age" formControlName="age" >
+  </mat-form-field>
+<div style="position: absolute ; left: 430px;top: 300px;">
+    <button type="submit">Submit</button>
+</div>
+</form>
+</div>
