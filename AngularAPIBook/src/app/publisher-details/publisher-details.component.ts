@@ -4,7 +4,7 @@ import { PublisherResourceModule } from './../shared/publisher-resource.module';
 import { BookService } from './../shared/book-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogPublisherComponent } from './../dialog-publisher/dialog-publisher.component';
+import { DialogPublisherComponent } from '../dialog-publisher/dialog-publisher.component';
 
 @Component({
   selector: 'app-publisher-details',
@@ -24,15 +24,13 @@ export class PublisherDetailsComponent implements OnInit {
 
     this.getData();
   }
-
-
   createNewPublisher() {
     this.router.navigate(['create'], { relativeTo: this.route });
   }
 
-  deletePublisher(id: number) {
-    return this.bookService.deletePublisher(id).subscribe(() => this.getData());
-  }
+  // deletePublisher(id: number) {
+  //   return this.bookService.deletePublisher(id).subscribe(() => this.getData());
+  // }
   edit(id: number) {
     console.log(id)
     this.bookService.loadOnePublisher(id).subscribe(data => console.log('DATAAAAA', data))
@@ -45,20 +43,10 @@ export class PublisherDetailsComponent implements OnInit {
         this.PublisherResource = data;
       });
   }
-  openDialog(){
+  openDialog(id: number){
    let dialogRef= this.dialog.open(DialogPublisherComponent,{
      data:{
-      deletePublisher:(id: number) =>{
-        return this.bookService.deletePublisher(id).subscribe(() => this.getData());
-      },
-      getData:()=>{
-        this.bookService.loadPublisher()
-        .subscribe(data => {
-          console.log('data Loaded!!', data)
-          this.PublisherResource = data;
-        })
-      },
-      id:this.id
+       id: id
      }
     })
    dialogRef.afterClosed().subscribe((result)=>{

@@ -16,6 +16,16 @@ export const getAuthorsSuccess = createAction('getAuthorsSuccess',
 export const getAuthorsFailure = createAction('addAuthorFailure',
     props<{ errorMessage: string }>()
 );
+// load one Author
+export const loadOneAuthor = createAction('loadOneAuthor',
+props<{id: number}>()
+);
+export const loadOneAuthorSuccsiss = createAction('loadOneAuthorSuccsess',
+props<{id: number}>()
+);
+export const loadOneAuthorFauiler = createAction('loadOneAuthorFauiler',
+props<{ errorMessage: string }>()
+);
 
 // add
 export const addAuthor = createAction('addAuthor',

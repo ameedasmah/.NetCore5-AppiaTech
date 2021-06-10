@@ -17,6 +17,10 @@ export class BookService {
     const params = new HttpParams().set("page", "1").set("pageSize", "10");
     return this.http.get<BookResource[]>('https://localhost:5001/api/books', { params })
   }
+  // lodOneBook
+  lodOneBook(id: any): Observable<any> {
+    return this.http.get<any>('https://localhost:5001/api/books/' + id);
+  }
   // Post Book
   postBook(res: any): Observable<any> {
     let obj = {

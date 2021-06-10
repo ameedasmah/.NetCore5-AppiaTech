@@ -29,6 +29,18 @@ export class AuthorEffects {
     )
   )
 
+  GetOneAuthors$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthorActions.loadOneAuthor),
+      exhaustMap(action =>
+        this.bookService.loadOneAuthor(action.id).pipe(
+          map(response => {
+            return AuthorActions.loadOneAuthorSuccsiss({id:action.id })
+          }),
+          catchError((errorMessage: string) =>of(AuthorActions.loadOneAuthorFauiler({errorMessage})))
+        ))
+    )
+  )
 
   AddAuthors$ = createEffect(() =>
     this.actions$.pipe(

@@ -6,7 +6,9 @@ import { Store } from '@ngrx/store';
 import { increment, loadAuthors } from '../Store/action/Author.action';
 import { AuthorResource } from '../shared/Author/author-resource/author-resource';
 import { DeleteAuthor } from './../Store/action/Author.action';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPublisherComponent } from '../dialog-publisher/dialog-publisher.component';
+import { DialogRemoveComponent } from './../dialog-remove/dialog-remove.component';
 
 
 @Component({
@@ -20,7 +22,8 @@ export class AuthorDetailsComponent implements OnInit {
   constructor(private bookService: BookService,
     public route: ActivatedRoute,
     private router: Router,
-    private store: Store<any>
+    private store: Store<any>,
+    public dialog:MatDialog
   ) {
     this.store.subscribe(data => { this.AuthorResource = data.Author.Authors ;console.log('this.AuthorResource', this.AuthorResource) })
   }
@@ -32,11 +35,22 @@ export class AuthorDetailsComponent implements OnInit {
     this.store.dispatch(DeleteAuthor({ id }))
   }
   Edit(id: number) {
-    console.log(id)
     this.router.navigate(['edit/' + id], { relativeTo: this.route })
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadAuthors())
+    if(this.AuthorResource.length===0){
+      this.store.dispatch(loadAuthors()) //only if the data doesn't exist on the store
+    }
+  }
+  openDialog(id: number){
+   let dialogRef= this.dialog.open(DialogRemoveComponent,{
+     data:{
+       id: id
+     }
+    })
+   dialogRef.afterClosed().subscribe((result)=>{
+     console.log(`Dialog result: ${result}`)
+   })
   }
 }
