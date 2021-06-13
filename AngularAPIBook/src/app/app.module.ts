@@ -9,7 +9,6 @@ import { PublisherDetailsComponent } from './publisher-details/publisher-details
 import { PublisherFormComponent } from './publisher-form/publisher-form.component';
 import { AuthorDetailsComponent } from './author-details/author-details.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouteModuleModule } from './shared/app-route-module.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +20,15 @@ import { MatInputModule, } from '@angular/material/input';
 import { MatIconModule, } from "@angular/material/icon";
 import { AutoSelectComponent } from './auto-select/auto-select.component'
 import {MatSelectModule} from '@angular/material/select';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './Store/Store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthorEffects } from './Store/effects/Author.effect';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { DialogPublisherComponent } from './dialog-publisher/dialog-publisher.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogRemoveComponent } from './dialog-remove/dialog-remove.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -36,10 +43,12 @@ import {MatSelectModule} from '@angular/material/select';
     AuthorDetailsComponent,
     AuthorFormComponent,
     AutoSelectComponent,
-    
-  ],
+    DialogPublisherComponent,
+    DialogRemoveComponent,
+    ],
+  entryComponents:[DialogPublisherComponent],
   imports: [
-    BrowserModule,
+BrowserModule,
     MatToolbarModule,
     RoutingModule,
     AppRouteModuleModule,
@@ -51,7 +60,12 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([AuthorEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

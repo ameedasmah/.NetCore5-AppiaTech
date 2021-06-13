@@ -8,27 +8,31 @@
   </div>
     <mat-form-field class="example-full-width">
         <mat-label>name</mat-label>
-        <input matInput placeholder="name" formControlName="name" >
+        <input matInput placeholder="name" formControlName="name" minlength="4">
+        <small  style="padding-top: 1.5rem;" >name is required and Uniqe</small>
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
         <mat-label>email</mat-label>
-        <input matInput placeholder="email" formControlName="email" >
+        <input matInput placeholder="email" this.myForm.patchValue formControlName="email" >
+        <small  style="padding-top: 1.5rem;" >email is required and Uniqe</small>
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
         <mat-label>dateOfBirth</mat-label>
         <input matInput placeholder="dateOfBirth" formControlName="dateOfBirth" >
+        <small  style="padding-top: 1.5rem;" >month-day-year</small>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>salery</mat-label>
         <input matInput placeholder="salery" formControlName="salery" >
+        <small  style="padding-top: 1.5rem;" >salery should be between 2000-5000 $</small>
        
       </mat-form-field>
 
     <div style="padding-left: 30rem;">
-        <button type="submit">Submit</button>
+        <button [disabled]="myForm.invalid" type="submit">Submit</button>
     </div>
     </form>
   </div>

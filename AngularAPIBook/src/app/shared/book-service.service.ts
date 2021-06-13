@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { BookResource } from './book-service.model';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { PublisherResourceModule } from './publisher-resource.module';
-import { AuthorResourceModule } from './author-resource.module';
+import { AuthorResource } from '../shared/Author/author-resource/author-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class BookService {
   loadBooks(): Observable<BookResource[]> {
     const params = new HttpParams().set("page", "1").set("pageSize", "10");
     return this.http.get<BookResource[]>('https://localhost:5001/api/books', { params })
+  }
+  // lodOneBook
+  lodOneBook(id: any): Observable<any> {
+    return this.http.get<any>('https://localhost:5001/api/books/' + id);
   }
   // Post Book
   postBook(res: any): Observable<any> {
@@ -42,15 +46,19 @@ export class BookService {
 
   // author
   // Get Author
-  loadAuthors(): Observable<AuthorResourceModule[]> {
-    return this.http.get<AuthorResourceModule[]>('https://localhost:5001/api/authours')
+  loadAuthors(): Observable<AuthorResource[]> {
+    return this.http.get<AuthorResource[]>('https://localhost:5001/api/authours')
+  }
+  // load one Author
+  loadOneAuthor(id: any): Observable<any> {
+    return this.http.get<any>('https://localhost:5001/api/authours/' + id);
   }
   // Post Author
-  AddAuthor(response: any): Observable<any> {
+  AddAuthor(model: any): Observable<any> {
     const obj = {
-      fullName: response.fullName,
-      email: response.email,
-      age: response.age
+      fullName: model.fullName,
+      email: model.email,
+      age: model.age
     }
     const body = JSON.stringify(obj);
     const headers = new HttpHeaders({

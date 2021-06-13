@@ -1,26 +1,51 @@
 
-<p style="text-align: center; padding-top: 2rem;"><em><b>Create New Author</b></em></p>
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="position: relative;align-items: center; justify-content: center;padding-top: 2rem;">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" style="padding-top: 2rem; width: 60%; position: relative; left: 400px;">
   <div style="border: 2px solid;background-color: rgb(246, 210, 210);padding-left: 8rem;padding-top: 2rem;padding-bottom: 2rem;">
   value:{{myForm.value|json}}
 </div>
 <mat-form-field class="example-full-width">
-    <mat-label>FullName</mat-label>
-    <input matInput placeholder="fullName" formControlName="fullName" >
+    <mat-label style="padding-top: 6px;">FullName</mat-label>
+    <input  matInput placeholder="fullName"  formControlName="fullName" required  >
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>email</mat-label>
-    <input matInput placeholder="email" formControlName="email" >
-  </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>age</mat-label>
-    <input matInput placeholder="age" formControlName="age" >
-  </mat-form-field>
-<div style="position: absolute ; left: 430px;top: 300px;">
-    <button type="submit">Submit</button>
+  <div style="font-weight: 400; padding-left: 16px;" *ngIf="myForm.controls.fullName.errors">
+    <!-- <div *ngIf="myForm.controls.fullName.errors.required" style="font-weight: 400;"> FullName is requierd</div>
+    <div *ngIf="myForm.controls.fullName.errors.required.minlength"> FullName at least 6 characters</div> -->
+  <small  style="padding-top: 1.5rem; font-size: small; " >fullName is required</small> 
+ </div> 
+
+<mat-form-field class="example-full-width">
+<mat-label>email</mat-label>
+<input matInput placeholder="email" formControlName="email" >
+</mat-form-field>
+
+
+<div style="margin-left: 15px;" *ngIf="myForm.controls.email.errors">
+<!-- <div *ngIf="myForm.controls.email.errors.required" style="font-weight: 400;"> email is requierd</div> -->
+<small  style="padding-top: 1.5rem; font-size: small; " >email is required</small>
 </div>
-</form>
+<mat-form-field class="example-full-width">
+<mat-label>age</mat-label>
+<input matInput placeholder="age" formControlName="age" >
+</mat-form-field>
+
+<div *ngIf="myForm.controls.age.errors">
+<div *ngIf="myForm.controls.age.errors.required" style="font-weight: 400;"> age is requierd</div>
+<div *ngIf="myForm.controls.age.errors.required.minlength" style="font-weight: 400;"> age is should not be more than 120</div>
+
+<!-- <div *ngIf="myForm.controls.FullName.errors"> FullName at least 6 characters</div>  -->
+<small  style="padding-top: 1.5rem; font-size: small; " >email is required</small> 
 </div>
+ <div style="margin-left: 15px;">
+<small  style="padding-top: 1.5rem; font-weight: 400;" >Age should be betweet 1-120</small>
+</div> 
+<div style="position: absolute ; left: 300px;bottom: 730pxpx; position: absolute;">
+<button [disabled]="myForm.invalid" type="submit">Submit</button>
+</div>
+</form> 
+
+
+
+
+

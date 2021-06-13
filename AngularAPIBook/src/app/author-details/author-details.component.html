@@ -1,6 +1,6 @@
 <h2 style="text-align: center; padding-top: 50px;"><b>My custom Table</b></h2>
 <div style="display: flex; flex-direction: column;position: relative;">
-<table  style="align-self: center; align-items: center;">
+<table  style="align-self: center; align-items: center; border: 0.3px solid black;">
     <tr>
         <th *ngFor="let cloumn of headers" style="padding: 1rem; border: 0.3px solid black;">
             {{cloumn}}
@@ -10,13 +10,13 @@
         <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{author.id}}
         </td>
-        <td  style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
+        <td  style="padding-left: 1rem; border-Top: 0.3px solid black; ;border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{author.fullName}}
         </td>
-        <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
+        <td style="padding-left: 1rem;  border-Top: 0.3px solid black;;border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{author.email}}
         </td>
-        <td style="padding-left: 1rem; border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
+        <td style="padding-left: 1rem;  border-Top: 0.3px solid black;;border-left: 0.3px solid black;border-right: 0.3px solid black;border-bottom: 0.3px solid black; ">
             {{author.age}}
         </td>
         <td style="border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
@@ -24,22 +24,24 @@
                 {{book.title.toString()}}
             </span>
         </td>
-        <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-            <button  style="background-color:rgb(238, 123, 123)"   (click)="Edit(author.id)">Edit</button>
+        <td style="padding-left:.5rem;border-bottom: 0.3px solid black;">
+            <button (click)="Edit(author.id)" >
+                 <mat-icon color="primary">edit</mat-icon> 
+                </button>
         </td>
         <td style="padding-left:.5rem; border-right: 0.3px solid black;border-bottom: 0.3px solid black;">
-            <button  style="background-color:rgb(238, 123, 123)"   (click)="deleteAuthor(author.id)">Delete</button>
+            <button (click)="openDialog(author.id)">   
+                <mat-icon color="primary">
+                    delete</mat-icon>
+                </button>
         </td>
     </tr>
 </table>
-<div style="position: absolute; left: 700px; top: 150px;">
-<button  style="background-color:rgb(238, 123, 123)" (click)="createNewAuthor()">
-    CraeteAuthor
-</button>
 </div>
-</div>
-<router-outlet></router-outlet>
+<div class="example-button-container"style="margin-left: 45%;margin-top:4%;" >
+    <button mat-mini-fab color="accent"  aria-label="Example icon button with a plus one icon" (click)="createNewAuthor()">
+        <mat-icon>add</mat-icon>
+    </button>
+    </div>
 
-<!-- <a [routerLink]="['create']">
-    CraeteAuthor
-</a> -->
+<router-outlet></router-outlet>

@@ -14,22 +14,27 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class BookDeatilsComponent implements OnInit {
 
   bookResource: BookResource[]
+
   constructor(private bookService: BookService,
-   public route:ActivatedRoute,
-   private router:Router) {
-
+    public route: ActivatedRoute,
+    private router: Router) {
   }
-
-  headers = ["Id", "title", "discraptions", "publisherId", 'newpublisher', 'bookAuthorResources','edit','Delete']
+  headers = ["Id", "title", "discraptions", "publisherId", 'newpublisher', 'bookAuthorResources', 'edit', 'Delete']
   ngOnInit(): void {
-    this.bookService.loadBooks().subscribe(data => this.bookResource = data);
+    this.getBook();
   }
-  deleteBook(id:number){
+  deleteBook(id: number) {
     console.log(id)
     this.bookService.deleteBook(id);
   }
-
-  CreateNewBook(){
-this.router.navigate(['create'],{relativeTo:this.route});
+getBook(){
+  this.bookService.loadBooks().subscribe(data => this.bookResource = data);
+}
+  CreateNewBook() {
+    this.router.navigate(['create'], { relativeTo: this.route });
+  }
+  Edit(id: number) {
+    console.log(id)
+    this.router.navigate(['edit/' + id], { relativeTo: this.route })
   }
 }

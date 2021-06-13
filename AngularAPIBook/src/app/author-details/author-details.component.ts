@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from '../shared/app-route-module.module';
-import { AuthorResourceModule } from './../shared/author-resource.module';
 import { BookService } from './../shared/book-service.service';
+import { Store } from '@ngrx/store';
+import { increment, loadAuthors } from '../Store/action/Author.action';
+import { AuthorResource } from '../shared/Author/author-resource/author-resource';
+import { DeleteAuthor } from './../Store/action/Author.action';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPublisherComponent } from '../dialog-publisher/dialog-publisher.component';
+import { DialogRemoveComponent } from './../dialog-remove/dialog-remove.component';
+
 
 @Component({
   selector: 'app-author-details',
@@ -10,31 +17,40 @@ import { BookService } from './../shared/book-service.service';
   styleUrls: ['./author-details.component.css']
 })
 export class AuthorDetailsComponent implements OnInit {
-  AuthorResource: AuthorResourceModule[]
+  AuthorResource: AuthorResource[]
+  headers = ["id", "fullName", "email", "age", "books", "Edit", "Delete"];
   constructor(private bookService: BookService,
-    public route:ActivatedRoute,
-    private router: Router) {
-     }
-  headers = ["id", "fullName", "email", "age", "books","Edit","Delete"];
-  ngOnInit(): void {
-    this.getData();
+    public route: ActivatedRoute,
+    private router: Router,
+    private store: Store<any>,
+    public dialog:MatDialog
+  ) {
+    this.store.subscribe(data => { this.AuthorResource = data.Author.Authors ;console.log('this.AuthorResource', this.AuthorResource) })
   }
-  createNewAuthor(){
-    this.router.navigate(['create'],{relativeTo:this.route});
-  }
-  deleteAuthor(id:number){
-    this.bookService.deleteAuthor(id).subscribe(()=>this.getData())
-  }
-getData(){
-  this.bookService.loadAuthors().subscribe(data => {
-    console.log(data)
-    return this.AuthorResource = data;
-  });
-}
-  Edit(id:number){
-    console.log(id)
-    this.router.navigate(['create/'+id],{relativeTo:this.route})
 
+  createNewAuthor() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
-  
+  deleteAuthor(id: number) {
+    this.store.dispatch(DeleteAuthor({ id }))
+  }
+  Edit(id: number) {
+    this.router.navigate(['edit/' + id], { relativeTo: this.route })
+  }
+
+  ngOnInit(): void {
+    if(this.AuthorResource.length===0){
+      this.store.dispatch(loadAuthors()) //only if the data doesn't exist on the store
+    }
+  }
+  openDialog(id: number){
+   let dialogRef= this.dialog.open(DialogRemoveComponent,{
+     data:{
+       id: id
+     }
+    })
+   dialogRef.afterClosed().subscribe((result)=>{
+     console.log(`Dialog result: ${result}`)
+   })
+  }
 }
