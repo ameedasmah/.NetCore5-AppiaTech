@@ -31,9 +31,9 @@ namespace WebApplication1.Helper
         }
 
 
-        public static PublisherResourse ToResource(this Publisher entities)
+        public static PublisherResource ToResource(this Publisher entities)
         {
-            return new PublisherResourse()
+            return new PublisherResource()
             {
                 Id = entities.Id,
                 Name = entities.Name,

@@ -3433,6 +3433,7 @@
           "Contract": "1.0.0",
           "DataAccessLayer": "1.0.0",
           "Microsoft.AspNetCore": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.Azure.Management.ResourceManager.Fluent": "1.37.1",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite": "5.0.7"

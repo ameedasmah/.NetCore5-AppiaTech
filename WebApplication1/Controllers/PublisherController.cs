@@ -1,7 +1,7 @@
 ﻿using Contract.Entities;
 using Contract.models;
 using Contract.Resourse;
-using DataAccessLayer.Repositories;
+using Domain.mangers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,67 +20,40 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class PublisherController : ControllerBase
     {
-        private readonly IPublisherRepositories _repository;
-        public PublisherController(IPublisherRepositories repository)
+        private readonly IPublisherManger publishermanger;
+        public PublisherController(IPublisherManger publishermanger)
         {
-            _repository = repository;
+            this.publishermanger = publishermanger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PublisherResourse>> GetPublishers()
+        public async Task<IEnumerable<PublisherResource>> GetPublishers()
         {
-            var PublisherEntities = await _repository.GetPublishers();
-
-            var publisherResource = new List<PublisherResourse>();
-
-            foreach (var item in PublisherEntities)
-            {
-                publisherResource.Add(item.ToResource());
-            }
-            return publisherResource;
+            return await publishermanger.GetPublishers();
         }
-
         [HttpGet("{id}")]
 
         public async Task<Publisher> GetPublisher(int id)
         {
-            return await _repository.GetPublisher(id);
+            return await publishermanger.GetPublisher(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<PublisherResourse>> CreatePublisher([FromBody] PublisherModel newPublisherModel)
+        public async Task<ActionResult<PublisherResource>> CreatePublisherAsync([FromBody] PublisherModel newPublisherModel)
         {
-            var newPublisherEntity = new Publisher()
-            {
-                Name = newPublisherModel.Name,
-                Email = newPublisherModel.Email,
-                DateOfBirth = newPublisherModel.DateOfBirth,
-                Salery = newPublisherModel.Salery
-            };
 
-            var newPublisher = await _repository.CreatePublisher(newPublisherEntity);
-
-            return CreatedAtAction(nameof(GetPublisher), new { Id = newPublisherEntity.Id }, newPublisher.ToResource());
+            return await publishermanger.CreatePublisher(newPublisherModel);
         }
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<PublisherResourse>> PutPublisher(int id, [FromBody] PublisherModel model)
+        public async Task<ActionResult<PublisherResource>> PutPublisher(int id, [FromBody] PublisherModel model)
         {
-            var existingEntity = await _repository.GetPublisher(id);
-            if (existingEntity == null) { return NotFound(); }
-
-            existingEntity.Name = model.Name;
-            var updatedEntity = await _repository.updatePublisher(existingEntity);
-            return Ok(updatedEntity.ToResource());
+            return await publishermanger.PutPublisher(id, model);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult> DeleteResource(int Id)
+        public async Task DeleteResource(int Id)
         {
-            var BookToDelete = await _repository.GetPublisher(Id);
-            if (BookToDelete is null) return NotFound();
-
-            await _repository.deletePublisher(BookToDelete.Id);
-            return NoContent();
+            await publishermanger.DeleteResource(Id);
         }
     }
 }

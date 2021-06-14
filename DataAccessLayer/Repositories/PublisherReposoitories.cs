@@ -1,5 +1,4 @@
 ﻿using Contract.Entities;
-using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,19 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Repositories
 {
+    public interface IPublisherRepositories
+    {
+        Task<IEnumerable<Publisher>> GetPublishers();
+        Task<Publisher> GetPublisher(int Id);
+
+        Task<Publisher> CreatePublisher(Publisher publisher);
+
+        Task<Publisher> updatePublisher(Publisher publisher);
+
+        Task deletePublisher(int Id);
+
+
+    }
     public class PublisherReposoitories : IPublisherRepositories
     {
         private readonly BookContext _Context;

@@ -1,5 +1,6 @@
 using Contract.Entities;
-using DataAccessLayer.Repositories;
+using Domain.mangers;
+using Domins.mangers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,10 +29,15 @@ namespace WebApplication1
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookDBConnection"),b=>b.MigrationsAssembly("WebApplication1").UseNetTopologySuite()));
+            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookDBConnection"), b => b.MigrationsAssembly("WebApplication1").UseNetTopologySuite()));
             services.AddScoped<IBookRepository, BookRepositories>();
             services.AddScoped<IPublisherRepositories, PublisherReposoitories>();
             services.AddScoped<IAuthorRepositories, AuthorRepositories>();
+            services.AddScoped<IPublisherManger, publishermanger>();
+            services.AddScoped <IAuthorMangers, AuthorManger>();
+            services.AddScoped<IBookManger, BookManger>();
+
+
 
             services.AddControllers();
             services.AddCors(options => options.AddDefaultPolicy(
@@ -69,7 +75,7 @@ namespace WebApplication1
             .AllowAnyHeader());
 
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

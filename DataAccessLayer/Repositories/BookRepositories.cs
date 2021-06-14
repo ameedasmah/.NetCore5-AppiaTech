@@ -1,13 +1,21 @@
 ﻿using Contract.Entities;
-using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Repositories
+namespace Domins.mangers
 {
+    public interface IBookRepository
+    {
+        Task<IEnumerable<Book>> Get();
+        Task<Book> Get(int id);
+        Task<Book> Create(Book book);
+        Task<Book> Update(Book book);
+        Task Delete(int id);
+    }
+
     public class BookRepositories : IBookRepository
     {
 
@@ -71,9 +79,9 @@ namespace WebApplication1.Repositories
             try
             {
 
-                _Context.Entry(book).State = EntityState.Modified;
+                _Context.Books.Update(book);
                 await _Context.SaveChangesAsync();
-                return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == book.Id);
+                return book;
             }
             catch (Exception ex)
             {

@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Contract.Entities;
-using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApplication1.Repositories
+namespace Domins.mangers
 {
+
+    public interface IAuthorRepositories
+    {
+        Task<ICollection<Author>> GetAuthors(Func<Author, bool> predicate = null);
+        Task<Author> GetAuthor(int Id);
+        Task<Author> CreateAuthor(Author author);
+        Task<Author> Update(Author author);
+        Task Delete(int Id);
+
+
+    }
+
     public class AuthorRepositories : IAuthorRepositories
     {
         private readonly BookContext _bookContext;
