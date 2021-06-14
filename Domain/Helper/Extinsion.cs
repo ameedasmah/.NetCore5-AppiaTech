@@ -37,6 +37,9 @@ namespace WebApplication1.Helper
             {
                 Id = entities.Id,
                 Name = entities.Name,
+                 Email=entities.Email,
+                 DateOfBirth=entities.DateOfBirth,
+                 Salary=entities.Salery,
                 Books = entities.Books.Select(x => x.ToLightResource()).ToList()
             };
         }

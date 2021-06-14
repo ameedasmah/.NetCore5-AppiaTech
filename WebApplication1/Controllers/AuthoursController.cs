@@ -40,6 +40,7 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult<AuthorResource>> CreateAuthor([FromBody] AuthorModel newAuthorModel)
         {
             return await Authormanger.CreateAuthor(newAuthorModel);
+
         }
         [HttpPut("{Id}")]
 

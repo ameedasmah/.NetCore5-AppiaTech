@@ -42,21 +42,20 @@ namespace Domain.mangers
                 Age = newAuthor.Age,
             };
             var AuthortOEntities = await _reposotiry.CreateAuthor(AuthEntitiy);
-            return AuthortOEntities.ToResource();
-
+                return AuthortOEntities.ToResource();
         }
 
         public async Task Delete(int id)
         {
             var bookToDelete = await _reposotiry.GetAuthor(id);
-            if (bookToDelete == null)
+            if (bookToDelete is null)
                 throw new Exception("Id is not correct");
 
             if (bookToDelete.Books.Count == 0)
             {
-                await _reposotiry.Delete(bookToDelete.Id);
                 throw new Exception("NO Data");
             }
+                await _reposotiry.Delete(bookToDelete.Id);
 
         }
 

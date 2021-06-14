@@ -30,10 +30,10 @@ namespace Domins.mangers
 
         public async Task<Author> CreateAuthor(Author author)
         {
-            if (author == null)
-            {
-                throw new ArgumentNullException($"{nameof(CreateAuthor)} entity musn't to be null ");
-            }
+            //if (author == null)
+            //{
+            //    throw new ArgumentNullException($"{nameof(CreateAuthor)} entity musn't to be null ");
+            //}
             try
             {
                 _bookContext.Authors.Add(author);
