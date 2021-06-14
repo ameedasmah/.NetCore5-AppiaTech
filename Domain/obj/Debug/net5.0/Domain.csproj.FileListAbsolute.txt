@@ -10,3 +10,21 @@ C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.dll
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\ref\Domain.dll
 C:\Users\Ameed\Desktop\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.pdb
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.csprojAssemblyReference.cache
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\Domain.deps.json
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\Domain.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\ref\Domain.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\Domain.pdb
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\Contract.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\DataAccessLayer.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\Contract.pdb
+E:\New folder\AmeedWork\WebApplication1\Domain\bin\Debug\net5.0\DataAccessLayer.pdb
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.csproj.CopyComplete
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\ref\Domain.dll
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\Domain.pdb
+E:\New folder\AmeedWork\WebApplication1\Domain\obj\Debug\net5.0\EFCoreSqlServerNetTopologySuite.cs

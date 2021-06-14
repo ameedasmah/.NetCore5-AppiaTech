@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Contract.Entities;
+using Contract.models;
+using Contract.Resourse;
+using DataAccessLayer.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Entities;
+
 using WebApplication1.Helper;
-using WebApplication1.models;
+
 using WebApplication1.Repositories;
-using WebApplication1.Resourse;
+
 
 namespace WebApplication1.Controllers
 {

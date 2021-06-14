@@ -8,18 +8,16 @@
     <input  matInput placeholder="fullName"  formControlName="fullName" required  >
   </mat-form-field>
 
-
   <div style="font-weight: 400; padding-left: 16px;" *ngIf="myForm.controls.fullName.errors">
     <!-- <div *ngIf="myForm.controls.fullName.errors.required" style="font-weight: 400;"> FullName is requierd</div>
     <div *ngIf="myForm.controls.fullName.errors.required.minlength"> FullName at least 6 characters</div> -->
-  <small  style="padding-top: 1.5rem; font-size: small; " >fullName is required</small> 
+  <small  style="padding-top: 1.6rem; font-size: small; " >fullName is required</small> 
  </div> 
 
 <mat-form-field class="example-full-width">
 <mat-label>email</mat-label>
 <input matInput placeholder="email" formControlName="email" >
 </mat-form-field>
-
 
 <div style="margin-left: 15px;" *ngIf="myForm.controls.email.errors">
 <!-- <div *ngIf="myForm.controls.email.errors.required" style="font-weight: 400;"> email is requierd</div> -->
@@ -38,14 +36,9 @@
 <small  style="padding-top: 1.5rem; font-size: small; " >email is required</small> 
 </div>
  <div style="margin-left: 15px;">
-<small  style="padding-top: 1.5rem; font-weight: 400;" >Age should be betweet 1-120</small>
+<small  style="padding-top: 1.4rem; font-weight: 400;" >Age should be betweet 1-120</small>
 </div> 
 <div style="position: absolute ; left: 300px;bottom: 730pxpx; position: absolute;">
 <button [disabled]="myForm.invalid" type="submit">Submit</button>
 </div>
 </form> 
-
-
-
-
-

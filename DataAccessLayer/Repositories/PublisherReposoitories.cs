@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Contract.Entities;
+using DataAccessLayer.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApplication1.Data;
-using WebApplication1.Entities;
+
 
 namespace WebApplication1.Repositories
 {
