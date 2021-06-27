@@ -1,12 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Contract.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Data;
 
-namespace WebApplication1.Repositories
+namespace Domins.mangers
 {
+    public interface IBookRepository
+    {
+        Task<IEnumerable<Book>> Get();
+        Task<Book> Get(int id);
+        Task<Book> Create(Book book);
+        Task<Book> Update(Book book);
+        Task Delete(int id);
+    }
+
     public class BookRepositories : IBookRepository
     {
 
@@ -16,14 +25,14 @@ namespace WebApplication1.Repositories
         {
             _Context = Context;
 
-                }
+        }
         public async Task<Book> Create(Book book)
         {
             _Context.Books.Add(book);
 
             await _Context.SaveChangesAsync();
 
-            return await _Context.Books.Include(X => X.Publisher).Include(x=>x.Authors).FirstOrDefaultAsync(X => X.Id == book.Id);
+            return await _Context.Books.Include(X => X.Publisher).Include(x => x.Authors).FirstOrDefaultAsync(X => X.Id == book.Id);
         }
 
         public async Task Delete(int Id)
@@ -40,9 +49,9 @@ namespace WebApplication1.Repositories
             try
             {
 
-            return await _Context.Books.Include(x=>x.Authors).Include(X => X.Publisher).ToListAsync();
+                return await _Context.Books.Include(x => x.Authors).Include(X => X.Publisher).ToListAsync();
             }
-            catch(Exception exiption)
+            catch (Exception exiption)
             {
                 throw new Exception($" there is no Book to retrive {exiption.Message}");
             }
@@ -53,9 +62,9 @@ namespace WebApplication1.Repositories
             try
             {
 
-            return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == Id);
+                return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == Id);
             }
-            catch(Exception exiption)
+            catch (Exception exiption)
             {
                 throw new Exception($"there is no Book to retrive {exiption.Message}");
             }
@@ -70,11 +79,11 @@ namespace WebApplication1.Repositories
             try
             {
 
-            _Context.Entry(book).State = EntityState.Modified;
+                _Context.Books.Update(book);
                 await _Context.SaveChangesAsync();
-            return await _Context.Books.Include(X => X.Publisher).Include(X => X.Authors).FirstOrDefaultAsync(X => X.Id == book.Id); 
+                return book;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"coulen't update book :{ex.Message}");
             }
@@ -82,5 +91,5 @@ namespace WebApplication1.Repositories
         }
 
     }
-        }
+}
 

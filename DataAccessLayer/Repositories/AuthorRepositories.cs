@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Contract.Entities;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Data;
-using WebApplication1.Entities;
 
-namespace WebApplication1.Repositories
+namespace Domins.mangers
 {
+
+    public interface IAuthorRepositories
+    {
+        Task<ICollection<Author>> GetAuthors(Func<Author, bool> predicate = null);
+        Task<Author> GetAuthor(int Id);
+        Task<Author> CreateAuthor(Author author);
+        Task<Author> Update(Author author);
+        Task Delete(int Id);
+
+
+    }
+
     public class AuthorRepositories : IAuthorRepositories
     {
         private readonly BookContext _bookContext;
@@ -25,9 +36,9 @@ namespace WebApplication1.Repositories
             }
             try
             {
-                _bookContext.Authors.Add(author);
+                _bookContext.Add(author);
                 await _bookContext.SaveChangesAsync();
-                return author;
+                return await _bookContext.Authors.Include(x=>x.Books).FirstOrDefaultAsync(X => X.Id == author.Id);
             }
             catch (Exception exiption)
             {

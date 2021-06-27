@@ -1,24 +1,22 @@
-﻿using System;
+﻿using Contract.Entities;
+using Contract.Resourse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Data;
-using WebApplication1.Entities;
-using WebApplication1.Resourse;
-
 namespace WebApplication1.Helper
 {
     public static class Extinsion
     {
-        public static BookResourse ToResource(this Book entitiy)
+        public static BookResource ToResource(this Book entitiy)
         {
-            return new BookResourse()
+            return new BookResource()
             {
                 Id = entitiy.Id,
                 PublisherId = entitiy.PublisherId,
                 Title = entitiy.Title,
                 discraptions = entitiy.Discraptions,
-                publisher = entitiy.Publisher
+                publisher = entitiy.Publisher.ToResourceNew()
             };
         }
 
@@ -33,12 +31,15 @@ namespace WebApplication1.Helper
         }
 
 
-        public static PublisherResourse ToResource(this Publisher entities)
+        public static PublisherResource ToResource(this Publisher entities)
         {
-            return new PublisherResourse()
+            return new PublisherResource()
             {
                 Id = entities.Id,
                 Name = entities.Name,
+                 Email=entities.Email,
+                 DateOfBirth=entities.DateOfBirth,
+                 Salary=entities.Salery,
                 Books = entities.Books.Select(x => x.ToLightResource()).ToList()
             };
         }
@@ -69,9 +70,9 @@ namespace WebApplication1.Helper
         }
 
 
-        public static PublisherBookResourse ToResourceNew(this Publisher entities)
+        public static PublisherBookResource ToResourceNew(this Publisher entities)
         {
-            return new PublisherBookResourse()
+            return new PublisherBookResource()
             {
                 Id = entities.Id,
                 Name = entities.Name,

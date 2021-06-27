@@ -1,3 +1,6 @@
+using Contract.Entities;
+using Domain.mangers;
+using Domins.mangers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,8 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Data;
-using WebApplication1.Entities;
 using WebApplication1.Repositories;
 
 namespace WebApplication1
@@ -26,18 +27,21 @@ namespace WebApplication1
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookDBConnection")));
+            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookOrginalProject"), b => b.MigrationsAssembly("WebApplication1").UseNetTopologySuite()));
             services.AddScoped<IBookRepository, BookRepositories>();
             services.AddScoped<IPublisherRepositories, PublisherReposoitories>();
             services.AddScoped<IAuthorRepositories, AuthorRepositories>();
+            services.AddScoped<IPublisherManger, publishermanger>();
+            services.AddScoped <IAuthorMangers, AuthorManger>();
+            services.AddScoped<IBookManger, BookManger>();
+
+
 
             services.AddControllers();
+            services.AddCors(options => options.AddDefaultPolicy(
+              builder => builder.AllowAnyOrigin()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
@@ -57,10 +61,18 @@ namespace WebApplication1
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
             }
-
+            else
+            {
+                app.UseHsts();
+            }
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseAuthorization();
 

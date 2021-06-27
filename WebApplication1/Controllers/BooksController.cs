@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Contract.Entities;
+using Contract.models;
+using Contract.Resourse;
+using Domain.mangers;
+using Domins.mangers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Data;
 using WebApplication1.Helper;
 using WebApplication1.Repositories;
 
@@ -15,36 +19,23 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly IBookRepository _bookRepository;
-        private readonly IAuthorRepositories _authorRepositories;
-
-        public BooksController(IBookRepository bookRepository, IAuthorRepositories authorRepositories)
+        private readonly IBookManger BookManger;
+        public BooksController(IBookManger BookManger)
         {
-            _bookRepository = bookRepository;
-            _authorRepositories = authorRepositories;
+            this.BookManger = BookManger;
 
         }
         [HttpGet]
         public async Task<IEnumerable<BookPublisherResource>> GetBooks()
         {
-            var BookEntities = await _bookRepository.Get();
-            var bookResources = new List<BookPublisherResource>();
-            foreach (var item in BookEntities)
-            {
-                bookResources.Add(item.ToResourceNew());
-            }
-            return bookResources;
+            return await BookManger.GetBooks();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BookPublisherResource>> GetBooks(int id)
         {
-            var BookEntities = await _bookRepository.Get(id);
-            if (BookEntities is null)
-            {
-                return NotFound();
-            }
-            return BookEntities.ToResourceNew();
+
+            return await BookManger.GetBook(id);
         }
 
         [HttpPost]
@@ -55,52 +46,19 @@ namespace WebApplication1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var author = _authorRepositories.GetAuthors(item => bookModel.AuthorIds.Contains(item.Id)).Result.ToList();
-            var newBook = new Book()
-            {
-                Title = bookModel.Title,
-                Discraptions = bookModel.Discraptions,
-                PublisherId = bookModel.PublisherId,
-                Authors = author
-            };
-
-            var newBooksss = await _bookRepository.Create(newBook);
-
-            return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBooksss.ToResourceNew());
+            return await BookManger.PostBook(bookModel);
         }
         [HttpPut("{id}")]
 
         public async Task<ActionResult<BookPublisherResource>> PutBooks(int id, [FromBody] BookModel book)
         {
-            var bookToUpdate = await _bookRepository.Get(id);
-            if (bookToUpdate == null)
-            {
-                return NotFound();
-            }
-
-            var authors = await _authorRepositories.GetAuthors(item => book.AuthorIds.Contains(item.Id));
-            var newBook = new Book()
-            {
-                PublisherId = bookToUpdate.PublisherId,
-                Title = bookToUpdate.Title,
-                Discraptions = bookToUpdate.Discraptions,
-                Authors = authors
-            };
-            var BookEntities = await _bookRepository.Update(newBook);
-            var bookResources = BookEntities.ToResourceNew();
-            return bookResources;
+            return await BookManger.PutBook(id, book);
 
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task Delete(int id)
         {
-            var bookToDelete = await _bookRepository.Get(id);
-            if (bookToDelete == null)
-
-                return NotFound();
-
-            await _bookRepository.Delete(bookToDelete.Id);
-            return NoContent();
+            await BookManger.Delete(id);
         }
 
     }
