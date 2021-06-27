@@ -29,7 +29,7 @@ namespace WebApplication1
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookDBConnection"), b => b.MigrationsAssembly("WebApplication1").UseNetTopologySuite()));
+            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("BookOrginalProject"), b => b.MigrationsAssembly("WebApplication1").UseNetTopologySuite()));
             services.AddScoped<IBookRepository, BookRepositories>();
             services.AddScoped<IPublisherRepositories, PublisherReposoitories>();
             services.AddScoped<IAuthorRepositories, AuthorRepositories>();
